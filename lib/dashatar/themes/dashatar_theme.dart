@@ -70,29 +70,6 @@ abstract class DashatarTheme extends PuzzleTheme {
   /// The path to the directory with dash assets for all puzzle tiles.
   String get dashAssetsDirectory;
 
-  /// The path to the dash asset for the given [tile].
-  ///
-  /// The puzzle consists of 15 Dash tiles which correct board positions
-  /// are as follows:
-  ///
-  ///  1   2   3   4
-  ///  5   6   7   8
-  ///  9  10  11  12
-  /// 13  14  15
-  ///
-  /// The dash asset for the i-th tile may be found in the file i.png.
-  IconData dashAssetForTile(Tile tile) {
-    if (tile.value <= 4) {
-      return Icons.delete_outline_sharp;
-    } else if (tile.value <= 8) {
-      return Icons.music_note_sharp;
-    } else if (tile.value <= 12) {
-      return Icons.umbrella_sharp;
-    } else {
-      return Icons.sports_football_sharp;
-    }
-  }
-
   @override
   List<Object?> get props => [
         name,

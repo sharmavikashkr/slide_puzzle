@@ -4,10 +4,18 @@ import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 
 part 'puzzle_event.dart';
 part 'puzzle_state.dart';
+
+final icons = <IconData>[
+  Icons.delete_outline_sharp,
+  Icons.music_note_sharp,
+  Icons.umbrella_sharp,
+  Icons.sports_football_sharp
+];
 
 class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   PuzzleBloc(this._size, {this.random}) : super(const PuzzleState()) {
@@ -51,15 +59,38 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
             ),
           );
         } else {
+          final puzzleSorted = puzzle.sort();
           emit(
             state.copyWith(
-              puzzle: puzzle.sort(),
+              puzzle: puzzleSorted,
               tileMovementStatus: TileMovementStatus.moved,
               numberOfCorrectTiles: puzzle.getNumberOfCorrectTiles(),
               numberOfMoves: state.numberOfMoves + 1,
               lastTappedTile: tappedTile,
             ),
           );
+          for (var i = 0; i < 4; i++) {
+            var matched = 0;
+            for (var j = 0; j < 4; j++) {
+              if (puzzleSorted.tiles[i * 4 + j].icon == icons[i]) {
+                matched++;
+              }
+            }
+            if (matched == 4) {
+              for (var j = 0; j < 4; j++) {
+                puzzleSorted.tiles[i * 4 + j].icon = icons[j];
+              }
+              emit(
+                state.copyWith(
+                  puzzle: puzzleSorted,
+                  tileMovementStatus: TileMovementStatus.moved,
+                  numberOfCorrectTiles: puzzle.getNumberOfCorrectTiles(),
+                  numberOfMoves: state.numberOfMoves,
+                  lastTappedTile: tappedTile,
+                ),
+              );
+            }
+          }
         }
       } else {
         emit(
@@ -146,13 +177,36 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
         if (i == size * size)
           Tile(
             value: i,
+            icon: Icons.abc,
             correctPosition: whitespacePosition,
             currentPosition: currentPositions[i - 1],
             isWhitespace: true,
           )
+        else if (i <= size)
+          Tile(
+            value: i,
+            icon: icons[0],
+            correctPosition: correctPositions[i - 1],
+            currentPosition: currentPositions[i - 1],
+          )
+        else if (i <= 2 * size)
+          Tile(
+            value: i,
+            icon: icons[1],
+            correctPosition: correctPositions[i - 1],
+            currentPosition: currentPositions[i - 1],
+          )
+        else if (i <= 3 * size)
+          Tile(
+            value: i,
+            icon: icons[2],
+            correctPosition: correctPositions[i - 1],
+            currentPosition: currentPositions[i - 1],
+          )
         else
           Tile(
             value: i,
+            icon: icons[3],
             correctPosition: correctPositions[i - 1],
             currentPosition: currentPositions[i - 1],
           )

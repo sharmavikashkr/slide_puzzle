@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 
 /// {@template tile}
@@ -6,7 +7,8 @@ import 'package:very_good_slide_puzzle/models/models.dart';
 /// {@endtemplate}
 class Tile extends Equatable {
   /// {@macro tile}
-  const Tile({
+  Tile( {
+    required this.icon,
     required this.value,
     required this.correctPosition,
     required this.currentPosition,
@@ -15,6 +17,8 @@ class Tile extends Equatable {
 
   /// Value representing the correct position of [Tile] in a list.
   final int value;
+
+  IconData icon;
 
   /// The correct 2D [Position] of the [Tile]. All tiles must be in their
   /// correct position to complete the puzzle.
@@ -29,6 +33,7 @@ class Tile extends Equatable {
   /// Create a copy of this [Tile] with updated current position.
   Tile copyWith({required Position currentPosition}) {
     return Tile(
+      icon: icon,
       value: value,
       correctPosition: correctPosition,
       currentPosition: currentPosition,

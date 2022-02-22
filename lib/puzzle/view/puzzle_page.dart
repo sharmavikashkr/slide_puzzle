@@ -242,15 +242,16 @@ class PuzzleBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.read<DashatarThemeBloc>().state.theme;
-    final puzzle = context.select((PuzzleBloc bloc) => bloc.state.puzzle);
+    final state = context.select((PuzzleBloc bloc) => bloc.state);
 
-    final size = puzzle.getDimension();
+    final size = state.puzzle.getDimension();
     if (size == 0) return const CircularProgressIndicator();
 
     return PuzzleKeyboardHandler(
       child: theme.layoutDelegate.boardBuilder(
+        state,
         size,
-        puzzle.tiles
+        state.puzzle.tiles
             .map(
               (tile) => _PuzzleTile(
                 key: Key('puzzle_tile_${tile.value.toString()}'),

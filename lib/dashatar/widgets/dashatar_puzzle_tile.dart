@@ -183,7 +183,7 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
                   child: (_) => FittedBox(
                     fit: BoxFit.fill,
                     child: Icon(
-                      theme.dashAssetForTile(widget.tile),
+                      widget.tile.icon,
                     ),
                   ),
                 ),

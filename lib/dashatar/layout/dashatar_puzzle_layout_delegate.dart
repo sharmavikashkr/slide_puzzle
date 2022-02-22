@@ -4,10 +4,14 @@ import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 
+import '../../colors/colors.dart';
+import '../widgets/dashatar_puzzle_icons.dart';
+
 /// {@template dashatar_puzzle_layout_delegate}
 /// A delegate for computing the layout of the puzzle UI
 /// that uses a [DashatarTheme].
 /// {@endtemplate}
+
 class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   /// {@macro dashatar_puzzle_layout_delegate}
   const DashatarPuzzleLayoutDelegate();
@@ -74,32 +78,38 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   }
 
   @override
-  Widget boardBuilder(int size, List<Widget> tiles) {
-    return Stack(
+  Widget boardBuilder(PuzzleState state, int size, List<Widget> tiles) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Positioned(
-          top: 24,
-          left: 0,
-          right: 0,
-          child: ResponsiveLayoutBuilder(
-            small: (_, child) => const SizedBox(),
-            medium: (_, child) => const SizedBox(),
-            large: (_, child) => const DashatarTimer(),
-          ),
-        ),
-        Column(
+        Stack(
           children: [
-            const ResponsiveGap(
-              small: 21,
-              medium: 34,
-              large: 96,
+            Positioned(
+              top: 24,
+              left: 0,
+              right: 0,
+              child: ResponsiveLayoutBuilder(
+                small: (_, child) => const SizedBox(),
+                medium: (_, child) => const SizedBox(),
+                large: (_, child) => const DashatarTimer(),
+              ),
             ),
-            DashatarPuzzleBoard(tiles: tiles),
-            const ResponsiveGap(
-              large: 96,
+            Column(
+              children: [
+                const ResponsiveGap(
+                  small: 21,
+                  medium: 34,
+                  large: 96,
+                ),
+                DashatarPuzzleBoard(tiles: tiles),
+                const ResponsiveGap(
+                  large: 96,
+                ),
+              ],
             ),
           ],
         ),
+        const DashatarPuzzleIcons()
       ],
     );
   }
