@@ -6,6 +6,8 @@ import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 import 'package:very_good_slide_puzzle/theme/theme.dart';
 
+import '../../theme/widgets/puzzle_subtitle.dart';
+
 /// {@template dashatar_start_section}
 /// Displays the start section of the puzzle based on [state].
 /// {@endtemplate}
@@ -21,9 +23,6 @@ class DashatarStartSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final status =
-        context.select((DashatarPuzzleBloc bloc) => bloc.state.status);
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -40,6 +39,10 @@ class DashatarStartSection extends StatelessWidget {
           key: puzzleTitleKey,
           title: context.l10n.puzzleChallengeTitle,
         ),
+        PuzzleSubTitle(
+          key: puzzleSubTitleKey,
+          title: context.l10n.puzzleChallengeSubTitle,
+        ),
         const ResponsiveGap(
           small: 12,
           medium: 16,
@@ -48,9 +51,7 @@ class DashatarStartSection extends StatelessWidget {
         NumberOfMovesAndTilesLeft(
           key: numberOfMovesAndTilesLeftKey,
           numberOfMoves: state.numberOfMoves,
-          numberOfTilesLeft: status == DashatarPuzzleStatus.started
-              ? state.numberOfTilesLeft
-              : state.puzzle.tiles.length - 1,
+          score: state.score,
         ),
         const ResponsiveGap(
           small: 8,

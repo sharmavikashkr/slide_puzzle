@@ -10,7 +10,6 @@ class Tile extends Equatable {
   Tile( {
     required this.icon,
     required this.value,
-    required this.correctPosition,
     required this.currentPosition,
     this.isWhitespace = false,
   });
@@ -19,10 +18,6 @@ class Tile extends Equatable {
   final int value;
 
   IconData icon;
-
-  /// The correct 2D [Position] of the [Tile]. All tiles must be in their
-  /// correct position to complete the puzzle.
-  final Position correctPosition;
 
   /// The current 2D [Position] of the [Tile].
   final Position currentPosition;
@@ -35,7 +30,6 @@ class Tile extends Equatable {
     return Tile(
       icon: icon,
       value: value,
-      correctPosition: correctPosition,
       currentPosition: currentPosition,
       isWhitespace: isWhitespace,
     );
@@ -44,7 +38,6 @@ class Tile extends Equatable {
   @override
   List<Object> get props => [
         value,
-        correctPosition,
         currentPosition,
         isWhitespace,
       ];

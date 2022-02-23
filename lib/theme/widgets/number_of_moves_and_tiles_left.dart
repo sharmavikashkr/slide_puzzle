@@ -16,17 +16,17 @@ class NumberOfMovesAndTilesLeft extends StatelessWidget {
   const NumberOfMovesAndTilesLeft({
     Key? key,
     required this.numberOfMoves,
-    required this.numberOfTilesLeft,
+    required this.score,
     this.color,
   }) : super(key: key);
 
   /// The number of moves to be displayed.
   final int numberOfMoves;
 
-  /// The number of tiles left to be displayed.
-  final int numberOfTilesLeft;
+  /// The current score
+  final int score;
 
-  /// The color of texts that display [numberOfMoves] and [numberOfTilesLeft].
+  /// The color of texts that display [numberOfMoves] and [score].
   /// Defaults to [PuzzleTheme.defaultColor].
   final Color? color;
 
@@ -50,9 +50,9 @@ class NumberOfMovesAndTilesLeft extends StatelessWidget {
             : PuzzleTextStyle.body;
 
         return Semantics(
-          label: l10n.puzzleNumberOfMovesAndTilesLeftLabelText(
+          label: l10n.puzzleNumberOfMovesAndScoreText(
             numberOfMoves.toString(),
-            numberOfTilesLeft.toString(),
+            score.toString(),
           ),
           child: ExcludeSemantics(
             child: Row(
@@ -77,19 +77,19 @@ class NumberOfMovesAndTilesLeft extends StatelessWidget {
                   child: Text(' ${l10n.puzzleNumberOfMoves} | '),
                 ),
                 AnimatedDefaultTextStyle(
+                  style: bodyTextStyle.copyWith(
+                    color: textColor,
+                  ),
+                  duration: PuzzleThemeAnimationDuration.textStyle,
+                  child: Text(' ${l10n.score}'),
+                ),
+                AnimatedDefaultTextStyle(
                   key: const Key('number_of_moves_and_tiles_left_tiles_left'),
                   style: PuzzleTextStyle.headline4.copyWith(
                     color: textColor,
                   ),
                   duration: PuzzleThemeAnimationDuration.textStyle,
-                  child: Text(numberOfTilesLeft.toString()),
-                ),
-                AnimatedDefaultTextStyle(
-                  style: bodyTextStyle.copyWith(
-                    color: textColor,
-                  ),
-                  duration: PuzzleThemeAnimationDuration.textStyle,
-                  child: Text(' ${l10n.puzzleNumberOfTilesLeft}'),
+                  child: Text(score.toString()),
                 ),
               ],
             ),

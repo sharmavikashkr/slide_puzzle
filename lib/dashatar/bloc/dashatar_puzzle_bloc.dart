@@ -120,11 +120,14 @@ class DashatarPuzzleBloc
     DashatarCountdownReset event,
     Emitter<DashatarPuzzleState> emit,
   ) {
+    _gameTickerSubscription?.pause();
     _startTicker();
     emit(
       state.copyWith(
         isCountdownRunning: true,
         secondsToBegin: event.secondsToBegin ?? secondsToBegin,
+        secondsToReset: secondsToReset,
+        isGameCountdownRunning: false
       ),
     );
   }

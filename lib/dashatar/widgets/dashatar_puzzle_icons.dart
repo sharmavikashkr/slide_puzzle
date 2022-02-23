@@ -3,8 +3,8 @@ import 'package:very_good_slide_puzzle/layout/layout.dart';
 
 abstract class _IconSize {
   static double small = 30;
-  static double medium = 40;
-  static double large = 50;
+  static double medium = 45;
+  static double large = 60;
 }
 
 abstract class _BoxHeight {
@@ -48,7 +48,7 @@ class _DashatarPuzzleIconsState extends State<DashatarPuzzleIcons> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         ...List.generate(
           icons.length,
@@ -87,14 +87,12 @@ class _DashatarPuzzleIconsState extends State<DashatarPuzzleIcons> {
                   child: child,
                 ),
               ),
-              child: (_) => Center(
-                child: FittedBox(
+              child: (_) => FittedBox(
                   fit: BoxFit.fitWidth,
                   child: Icon(
                     icons[index],
                     color: Colors.white,
                   ),
-                ),
               ),
             ),
           ),

@@ -96,15 +96,12 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
     final status =
         context.select((DashatarPuzzleBloc bloc) => bloc.state.status);
     final hasStarted = status == DashatarPuzzleStatus.started;
-    final puzzleIncomplete =
-        context.select((PuzzleBloc bloc) => bloc.state.puzzleStatus) ==
-            PuzzleStatus.incomplete;
 
     final movementDuration = status == DashatarPuzzleStatus.loading
         ? const Duration(milliseconds: 800)
         : const Duration(milliseconds: 370);
 
-    final canPress = hasStarted && puzzleIncomplete;
+    final canPress = hasStarted;
 
     return AudioControlListener(
       audioPlayer: _audioPlayer,

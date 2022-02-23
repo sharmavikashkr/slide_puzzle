@@ -64,9 +64,7 @@ class PuzzleView extends StatelessWidget {
             BlocProvider(
               create: (context) => PuzzleBloc(4)
                 ..add(
-                  const PuzzleInitialized(
-                    shufflePuzzle: false,
-                  ),
+                  const PuzzleInitialized(),
                 ),
             ),
           ],
@@ -331,6 +329,11 @@ final puzzleNameKey = GlobalKey(debugLabel: 'puzzle_name');
 ///
 /// Used to animate the transition of [PuzzleTitle] when changing a theme.
 final puzzleTitleKey = GlobalKey(debugLabel: 'puzzle_title');
+
+/// The global key of [PuzzleSubTitle].
+///
+/// Used to animate the transition of [PuzzleTitle] when changing a theme.
+final puzzleSubTitleKey = GlobalKey(debugLabel: 'puzzle_subtitle');
 
 /// The global key of [NumberOfMovesAndTilesLeft].
 ///

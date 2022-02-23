@@ -32,42 +32,15 @@ class DashatarPuzzleBoard extends StatefulWidget {
 }
 
 class _DashatarPuzzleBoardState extends State<DashatarPuzzleBoard> {
-  Timer? _completePuzzleTimer;
 
   @override
   void dispose() {
-    _completePuzzleTimer?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<PuzzleBloc, PuzzleState>(
-      listener: (context, state) async {
-        if (state.puzzleStatus == PuzzleStatus.complete) {
-          _completePuzzleTimer =
-              Timer(const Duration(milliseconds: 370), () async {
-            await showAppDialog<void>(
-              context: context,
-              child: MultiBlocProvider(
-                providers: [
-                  BlocProvider.value(
-                    value: context.read<DashatarThemeBloc>(),
-                  ),
-                  BlocProvider.value(
-                    value: context.read<PuzzleBloc>(),
-                  ),
-                  BlocProvider.value(
-                    value: context.read<AudioControlBloc>(),
-                  ),
-                ],
-                child: const DashatarShareDialog(),
-              ),
-            );
-          });
-        }
-      },
-      child: ResponsiveLayoutBuilder(
+    return ResponsiveLayoutBuilder(
         small: (_, child) => SizedBox.square(
           key: const Key('dashatar_puzzle_board_small'),
           dimension: _BoardSize.small,
@@ -84,7 +57,6 @@ class _DashatarPuzzleBoardState extends State<DashatarPuzzleBoard> {
           child: child,
         ),
         child: (_) => Stack(children: widget.tiles),
-      ),
     );
   }
 }
