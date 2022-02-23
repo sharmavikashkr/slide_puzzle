@@ -92,10 +92,9 @@ class DashatarPuzzleBloc
       _tickerSubscription?.pause();
       emit(
         state.copyWith(
-          isCountdownRunning: false,
-          secondsToReset: secondsToReset,
-          isGameCountdownRunning: true
-        ),
+            isCountdownRunning: false,
+            secondsToReset: secondsToReset,
+            isGameCountdownRunning: true),
       );
       _startGameTicker();
     } else {
@@ -127,7 +126,7 @@ class DashatarPuzzleBloc
         isCountdownRunning: true,
         secondsToBegin: event.secondsToBegin ?? secondsToBegin,
         secondsToReset: secondsToReset,
-        isGameCountdownRunning: false
+        isGameCountdownRunning: false,
       ),
     );
   }
@@ -156,6 +155,7 @@ class DashatarPuzzleBloc
           isGameCountdownRunning: false,
           isCountdownRunning: true,
           secondsToBegin: secondsToBegin,
+          secondsToReset: secondsToReset,
         ),
       );
       _startTicker();

@@ -17,7 +17,7 @@ import '../../typography/text_styles.dart';
 
 abstract class _TileSize {
   static double small = 75;
-  static double medium = 100;
+  static double medium = 90;
   static double large = 112;
 }
 

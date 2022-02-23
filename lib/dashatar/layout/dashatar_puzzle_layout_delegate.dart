@@ -103,13 +103,15 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
                 ),
                 DashatarPuzzleBoard(tiles: tiles),
                 const ResponsiveGap(
+                  small: 21,
+                  medium: 34,
                   large: 96,
                 ),
               ],
             ),
           ],
         ),
-        const DashatarPuzzleIcons()
+        const DashatarPuzzleIcons(),
       ],
     );
   }

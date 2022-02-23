@@ -49,9 +49,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
       emit(
         state.copyWith(
           puzzle: puzzleSorted,
-          tileMovementStatus: TileMovementStatus.moved,
           numberOfMoves: state.numberOfMoves + 1,
-          lastTappedTile: tappedTile,
         ),
       );
       for (var i = 0; i < 4; i++) {
@@ -68,9 +66,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
           emit(
             state.copyWith(
               puzzle: puzzleSorted,
-              tileMovementStatus: TileMovementStatus.moved,
               numberOfMoves: state.numberOfMoves,
-              lastTappedTile: tappedTile,
               score: state.score + 1,
             ),
           );
@@ -84,6 +80,8 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     emit(
       PuzzleState(
         puzzle: puzzle.sort(),
+        score: state.score,
+        numberOfMoves: state.numberOfMoves
       ),
     );
   }
@@ -126,20 +124,18 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     int size,
     List<Position> currentPositions,
   ) {
-    // if (state.puzzle.tiles.isNotEmpty) {
-    //   final tiles = state.puzzle.tiles;
-    //   //tiles.shuffle(random);
-    //   print(tiles);
-    //   print(currentPositions);
-    //   return [
-    //     for (int i = 0; i < size * size; i++)
-    //       Tile(
-    //         value: i,
-    //         icon: tiles[i].icon,
-    //         currentPosition: currentPositions[i - 1],
-    //       )
-    //   ];
-    // }
+    if (state.puzzle.tiles.isNotEmpty) {
+      final tiles = state.puzzle.tiles;
+      return [
+        for (int i = 0; i < size * size; i++)
+          Tile(
+            value: tiles[i].value,
+            icon: tiles[i].icon,
+            currentPosition: currentPositions[i],
+            isWhitespace: tiles[i].isWhitespace,
+          )
+      ];
+    }
     return [
       for (int i = 1; i <= size * size; i++)
         if (i == size * size)

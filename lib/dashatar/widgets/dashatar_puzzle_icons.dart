@@ -8,8 +8,8 @@ abstract class _IconSize {
 }
 
 abstract class _BoxHeight {
-  static double small = 75;
-  static double medium = 100;
+  static double small = 80;
+  static double medium = 96;
   static double large = 118;
 }
 
@@ -88,11 +88,11 @@ class _DashatarPuzzleIconsState extends State<DashatarPuzzleIcons> {
                 ),
               ),
               child: (_) => FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Icon(
-                    icons[index],
-                    color: Colors.white,
-                  ),
+                fit: BoxFit.fitWidth,
+                child: Icon(
+                  icons[index],
+                  color: Colors.white,
+                ),
               ),
             ),
           ),
