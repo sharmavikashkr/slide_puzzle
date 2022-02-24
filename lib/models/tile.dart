@@ -7,8 +7,9 @@ import 'package:very_good_slide_puzzle/models/models.dart';
 /// {@endtemplate}
 class Tile extends Equatable {
   /// {@macro tile}
-  Tile( {
+  Tile({
     required this.icon,
+    this.flip = false,
     required this.value,
     required this.currentPosition,
     this.isWhitespace = false,
@@ -18,6 +19,8 @@ class Tile extends Equatable {
   final int value;
 
   IconData icon;
+
+  bool flip;
 
   /// The current 2D [Position] of the [Tile].
   final Position currentPosition;
@@ -29,6 +32,7 @@ class Tile extends Equatable {
   Tile copyWith({required Position currentPosition}) {
     return Tile(
       icon: icon,
+      flip: flip,
       value: value,
       currentPosition: currentPosition,
       isWhitespace: isWhitespace,

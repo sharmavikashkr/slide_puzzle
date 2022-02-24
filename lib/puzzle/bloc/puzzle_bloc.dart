@@ -62,6 +62,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
         if (matched == 4) {
           for (var j = 0; j < 4; j++) {
             puzzleSorted.tiles[i * 4 + j].icon = icons[Random().nextInt(4)];
+            puzzleSorted.tiles[i * 4 + j].flip = true;
           }
           emit(
             state.copyWith(
@@ -79,10 +80,9 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     final puzzle = _generatePuzzle(_size, shuffle: true);
     emit(
       PuzzleState(
-        puzzle: puzzle.sort(),
-        score: state.score,
-        numberOfMoves: state.numberOfMoves
-      ),
+          puzzle: puzzle.sort(),
+          score: state.score,
+          numberOfMoves: state.numberOfMoves),
     );
   }
 

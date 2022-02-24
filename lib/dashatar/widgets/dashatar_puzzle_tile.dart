@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -89,6 +90,25 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
     super.dispose();
   }
 
+  Widget __transitionBuilder(Widget widget, Animation<double> animation) {
+    if (!this.widget.tile.flip) {
+      return widget;
+    }
+    final rotateAnim = Tween(begin: pi, end: 0.0).animate(animation);
+    return AnimatedBuilder(
+      animation: rotateAnim,
+      child: widget,
+      builder: (context, widget) {
+        final value = min(rotateAnim.value, pi / 2);
+        return Transform(
+          transform: Matrix4.rotationY(value),
+          alignment: Alignment.center,
+          child: widget,
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final size = widget.state.puzzle.getDimension();
@@ -112,75 +132,82 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
         ),
         duration: movementDuration,
         curve: Curves.easeInOut,
-        child: ResponsiveLayoutBuilder(
-          small: (_, child) => SizedBox.square(
-            key: Key('dashatar_puzzle_tile_small_${widget.tile.value}'),
-            dimension: _TileSize.small,
-            child: child,
-          ),
-          medium: (_, child) => SizedBox.square(
-            key: Key('dashatar_puzzle_tile_medium_${widget.tile.value}'),
-            dimension: _TileSize.medium,
-            child: child,
-          ),
-          large: (_, child) => SizedBox.square(
-            key: Key('dashatar_puzzle_tile_large_${widget.tile.value}'),
-            dimension: _TileSize.large,
-            child: child,
-          ),
-          child: (_) => MouseRegion(
-            onEnter: (_) {
-              if (canPress) {
-                _controller.forward();
-              }
-            },
-            onExit: (_) {
-              if (canPress) {
-                _controller.reverse();
-              }
-            },
-            child: ScaleTransition(
-              key: Key('dashatar_puzzle_tile_scale_${widget.tile.value}'),
-              scale: _scale,
-              child: TextButton(
-                style: TextButton.styleFrom(
-                  primary: PuzzleColors.black,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12),
+        child: AnimatedSwitcher(
+          duration: const Duration(milliseconds: 1000),
+          transitionBuilder: __transitionBuilder,
+          child: ResponsiveLayoutBuilder(
+            key: ValueKey(Random().nextDouble()),
+            small: (_, child) => SizedBox.square(
+              key: Key('dashatar_puzzle_tile_small_${widget.tile.value}'),
+              dimension: _TileSize.small,
+              child: child,
+            ),
+            medium: (_, child) => SizedBox.square(
+              key: Key('dashatar_puzzle_tile_medium_${widget.tile.value}'),
+              dimension: _TileSize.medium,
+              child: child,
+            ),
+            large: (_, child) => SizedBox.square(
+              key: Key('dashatar_puzzle_tile_large_${widget.tile.value}'),
+              dimension: _TileSize.large,
+              child: child,
+            ),
+            child: (_) => MouseRegion(
+              onEnter: (_) {
+                if (canPress) {
+                  _controller.forward();
+                }
+              },
+              onExit: (_) {
+                if (canPress) {
+                  _controller.reverse();
+                }
+              },
+              child: ScaleTransition(
+                key: Key('dashatar_puzzle_tile_scale_${widget.tile.value}'),
+                scale: _scale,
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    primary: PuzzleColors.black,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(12),
+                      ),
                     ),
+                    backgroundColor: theme.defaultColor,
                   ),
-                  backgroundColor: theme.defaultColor,
-                ),
-                onPressed: canPress
-                    ? () {
-                        context.read<PuzzleBloc>().add(TileTapped(widget.tile));
-                        unawaited(_audioPlayer?.replay());
-                      }
-                    : null,
-                child: ResponsiveLayoutBuilder(
-                  small: (_, child) => SizedBox.square(
-                    key: Key(
-                        'dashatar_puzzle_tile_icon_small_${widget.tile.value}'),
-                    dimension: 30,
-                    child: child,
-                  ),
-                  medium: (_, child) => SizedBox.square(
-                    key: Key(
-                        'dashatar_puzzle_tile_icon_small_${widget.tile.value}'),
-                    dimension: 40,
-                    child: child,
-                  ),
-                  large: (_, child) => SizedBox.square(
-                    key: Key(
-                        'dashatar_puzzle_tile_icon_small_${widget.tile.value}'),
-                    dimension: 50,
-                    child: child,
-                  ),
-                  child: (_) => FittedBox(
-                    fit: BoxFit.fill,
-                    child: Icon(
-                      widget.tile.icon,
+                  onPressed: canPress
+                      ? () {
+                          context
+                              .read<PuzzleBloc>()
+                              .add(TileTapped(widget.tile));
+                          unawaited(_audioPlayer?.replay());
+                        }
+                      : null,
+                  child: ResponsiveLayoutBuilder(
+                    small: (_, child) => SizedBox.square(
+                      key: Key(
+                          'dashatar_puzzle_tile_icon_small_${widget.tile.value}'),
+                      dimension: 30,
+                      child: child,
+                    ),
+                    medium: (_, child) => SizedBox.square(
+                      key: Key(
+                          'dashatar_puzzle_tile_icon_small_${widget.tile.value}'),
+                      dimension: 40,
+                      child: child,
+                    ),
+                    large: (_, child) => SizedBox.square(
+                      key: Key(
+                          'dashatar_puzzle_tile_icon_small_${widget.tile.value}'),
+                      dimension: 50,
+                      child: child,
+                    ),
+                    child: (_) => FittedBox(
+                      fit: BoxFit.fill,
+                      child: Icon(
+                        widget.tile.icon,
+                      ),
                     ),
                   ),
                 ),

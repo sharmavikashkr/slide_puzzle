@@ -132,6 +132,8 @@ class Puzzle extends Equatable {
   Puzzle sort() {
     final sortedTiles = tiles.toList()
       ..sort((tileA, tileB) {
+        tileA.flip = false;
+        tileB.flip = false;
         return tileA.currentPosition.compareTo(tileB.currentPosition);
       });
     return Puzzle(tiles: sortedTiles);
