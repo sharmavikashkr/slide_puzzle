@@ -11,15 +11,19 @@ enum DashatarPuzzleStatus {
   loading,
 
   /// The puzzle is started.
-  started
+  started,
+
+  /// The puzzle is stopped
+  stopped,
 }
 
 class DashatarPuzzleState extends Equatable {
-  const DashatarPuzzleState(
-      {required this.secondsToBegin,
-      required this.secondsToReset,
-      this.isCountdownRunning = false,
-      this.isGameCountdownRunning = false});
+  const DashatarPuzzleState({
+    required this.secondsToBegin,
+    required this.secondsToReset,
+    this.isCountdownRunning = false,
+    this.isGameCountdownRunning = false,
+  });
 
   /// Whether the countdown of this puzzle is currently running.
   final bool isCountdownRunning;
@@ -35,7 +39,9 @@ class DashatarPuzzleState extends Equatable {
   DashatarPuzzleStatus get status => isCountdownRunning && secondsToBegin > 0
       ? DashatarPuzzleStatus.loading
       : (secondsToBegin == 0
-          ? DashatarPuzzleStatus.started
+          ? (isGameCountdownRunning
+              ? DashatarPuzzleStatus.started
+              : DashatarPuzzleStatus.stopped)
           : DashatarPuzzleStatus.notStarted);
 
   @override

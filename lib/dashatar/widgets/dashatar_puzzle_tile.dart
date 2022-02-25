@@ -187,19 +187,22 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
                   child: ResponsiveLayoutBuilder(
                     small: (_, child) => SizedBox.square(
                       key: Key(
-                          'dashatar_puzzle_tile_icon_small_${widget.tile.value}'),
+                        'dashatar_puzzle_tile_icon_small_${widget.tile.value}',
+                      ),
                       dimension: 30,
                       child: child,
                     ),
                     medium: (_, child) => SizedBox.square(
                       key: Key(
-                          'dashatar_puzzle_tile_icon_small_${widget.tile.value}'),
+                        'dashatar_puzzle_tile_icon_small_${widget.tile.value}',
+                      ),
                       dimension: 40,
                       child: child,
                     ),
                     large: (_, child) => SizedBox.square(
                       key: Key(
-                          'dashatar_puzzle_tile_icon_small_${widget.tile.value}'),
+                        'dashatar_puzzle_tile_icon_small_${widget.tile.value}',
+                      ),
                       dimension: 50,
                       child: child,
                     ),

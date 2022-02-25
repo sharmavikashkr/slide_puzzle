@@ -22,12 +22,7 @@ class DashatarCountdownStopped extends DashatarPuzzleEvent {
 }
 
 class DashatarCountdownReset extends DashatarPuzzleEvent {
-  const DashatarCountdownReset({this.secondsToBegin});
-  
-  final int? secondsToBegin;
-
-  @override
-  List<Object?> get props => [secondsToBegin];
+  const DashatarCountdownReset();
 }
 
 class DashatarGameCountdownStarted extends DashatarPuzzleEvent {
@@ -43,10 +38,5 @@ class DashatarGameCountdownStopped extends DashatarPuzzleEvent {
 }
 
 class DashatarGameCountdownReset extends DashatarPuzzleEvent {
-  const DashatarGameCountdownReset({this.secondsToReset});
-
-  final int? secondsToReset;
-
-  @override
-  List<Object?> get props => [secondsToReset];
+  const DashatarGameCountdownReset();
 }

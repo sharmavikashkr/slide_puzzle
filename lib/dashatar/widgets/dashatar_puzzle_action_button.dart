@@ -51,12 +51,15 @@ class _DashatarPuzzleActionButtonState
         context.select((DashatarPuzzleBloc bloc) => bloc.state.status);
     final isLoading = status == DashatarPuzzleStatus.loading;
     final isStarted = status == DashatarPuzzleStatus.started;
+    final isStopped = status == DashatarPuzzleStatus.stopped;
 
-    final text = isStarted
-        ? context.l10n.dashatarRestart
-        : (isLoading
-            ? context.l10n.dashatarGetReady
-            : context.l10n.dashatarStartGame);
+    final text = isLoading
+        ? context.l10n.dashatarGetReady
+        : (isStarted
+            ? context.l10n.dashatarStop
+            : (isStopped
+                ? context.l10n.dashatarRestart
+                : context.l10n.dashatarStartGame));
 
     return AudioControlListener(
       audioPlayer: _audioPlayer,
@@ -69,14 +72,19 @@ class _DashatarPuzzleActionButtonState
           child: PuzzleButton(
             onPressed: isLoading
                 ? null
-                : () async {
-                    context.read<DashatarPuzzleBloc>().add(
-                          const DashatarCountdownReset(
-                            secondsToBegin: 3,
-                          ),
-                        );
-                    unawaited(_audioPlayer.replay());
-                  },
+                : isStarted
+                    ? () async {
+                        context.read<DashatarPuzzleBloc>().add(
+                              const DashatarGameCountdownStopped(),
+                            );
+                        unawaited(_audioPlayer.replay());
+                      }
+                    : () async {
+                        context.read<DashatarPuzzleBloc>().add(
+                              const DashatarCountdownReset(),
+                            );
+                        unawaited(_audioPlayer.replay());
+                      },
             textColor: isLoading ? theme.defaultColor : null,
             child: Text(text),
           ),

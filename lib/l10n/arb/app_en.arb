@@ -42,7 +42,11 @@
     },
     "dashatarRestart": "Restart",
     "@dashatarRestart": {
-        "description": "Shown after the puzzle is started and may be restarted"
+        "description": "Shown after the puzzle is stopped and may be restarted"
+    },
+    "dashatarStop": "Stop",
+    "@dashatarStop": {
+        "description": "Shown after the puzzle is started and may be stopped"
     },
     "dashatarCountdownGo": "GO!",
     "@dashatarCountdownGo": {
