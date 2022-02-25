@@ -1,5 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
+
+import '../../puzzle/bloc/puzzle_bloc.dart';
+import '../bloc/dashatar_puzzle_bloc.dart';
 
 abstract class _IconSize {
   static double small = 30;
@@ -8,8 +14,8 @@ abstract class _IconSize {
 }
 
 abstract class _BoxHeight {
-  static double small = 80;
-  static double medium = 96;
+  static double small = 75;
+  static double medium = 90;
   static double large = 118;
 }
 
@@ -33,13 +39,6 @@ class DashatarPuzzleIcons extends StatefulWidget {
 }
 
 class _DashatarPuzzleIconsState extends State<DashatarPuzzleIcons> {
-  final List<IconData> icons = [
-    Icons.delete_outline_sharp,
-    Icons.music_note_sharp,
-    Icons.umbrella_sharp,
-    Icons.sports_football_sharp
-  ];
-
   @override
   void dispose() {
     super.dispose();
@@ -47,12 +46,14 @@ class _DashatarPuzzleIconsState extends State<DashatarPuzzleIcons> {
 
   @override
   Widget build(BuildContext context) {
+    final icons = context.select((PuzzleBloc bloc) => bloc.state.icons);
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: <Widget>[
+      children: [
         ...List.generate(
           icons.length,
           (index) => ResponsiveLayoutBuilder(
+            key: ValueKey(Random().nextDouble()),
             small: (_, child) => SizedBox(
               height: _BoxHeight.small,
               width: _BoxWidth.small,
@@ -90,7 +91,7 @@ class _DashatarPuzzleIconsState extends State<DashatarPuzzleIcons> {
               child: (_) => FittedBox(
                 fit: BoxFit.fitWidth,
                 child: Icon(
-                  icons[index],
+                  icons[index] as IconData,
                   color: Colors.white,
                 ),
               ),

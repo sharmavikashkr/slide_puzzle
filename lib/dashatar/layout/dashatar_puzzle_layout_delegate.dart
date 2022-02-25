@@ -79,39 +79,33 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
 
   @override
   Widget boardBuilder(PuzzleState state, int size, List<Widget> tiles) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Stack(
       children: [
-        Stack(
+        Positioned(
+          top: 24,
+          left: 0,
+          right: 0,
+          child: ResponsiveLayoutBuilder(
+            small: (_, child) => const SizedBox(),
+            medium: (_, child) => const SizedBox(),
+            large: (_, child) => const DashatarTimer(),
+          ),
+        ),
+        Column(
           children: [
-            Positioned(
-              top: 24,
-              left: 0,
-              right: 0,
-              child: ResponsiveLayoutBuilder(
-                small: (_, child) => const SizedBox(),
-                medium: (_, child) => const SizedBox(),
-                large: (_, child) => const DashatarTimer(),
-              ),
+            const ResponsiveGap(
+              small: 21,
+              medium: 34,
+              large: 96,
             ),
-            Column(
-              children: [
-                const ResponsiveGap(
-                  small: 21,
-                  medium: 34,
-                  large: 96,
-                ),
-                DashatarPuzzleBoard(tiles: tiles),
-                const ResponsiveGap(
-                  small: 21,
-                  medium: 34,
-                  large: 96,
-                ),
-              ],
+            DashatarPuzzleBoard(tiles: tiles),
+            const ResponsiveGap(
+              small: 21,
+              medium: 34,
+              large: 96,
             ),
           ],
         ),
-        const DashatarPuzzleIcons(),
       ],
     );
   }

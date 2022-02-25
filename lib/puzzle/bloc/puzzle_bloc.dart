@@ -10,13 +10,6 @@ import 'package:very_good_slide_puzzle/models/models.dart';
 part 'puzzle_event.dart';
 part 'puzzle_state.dart';
 
-final icons = <IconData>[
-  Icons.delete_outline_sharp,
-  Icons.music_note_sharp,
-  Icons.umbrella_sharp,
-  Icons.sports_football_sharp
-];
-
 class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
   PuzzleBloc(this._size, {this.random}) : super(const PuzzleState()) {
     on<PuzzleInitialized>(_onPuzzleInitialized);
@@ -55,13 +48,14 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
       for (var i = 0; i < 4; i++) {
         var matched = 0;
         for (var j = 0; j < 4; j++) {
-          if (puzzleSorted.tiles[i * 4 + j].icon == icons[i]) {
+          if (puzzleSorted.tiles[i * 4 + j].icon == state.icons[i]) {
             matched++;
           }
         }
         if (matched == 4) {
           for (var j = 0; j < 4; j++) {
-            puzzleSorted.tiles[i * 4 + j].icon = icons[Random().nextInt(4)];
+            puzzleSorted.tiles[i * 4 + j].icon =
+                state.icons[Random().nextInt(4)] as IconData;
             puzzleSorted.tiles[i * 4 + j].flip = true;
           }
           emit(
@@ -78,8 +72,10 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
 
   void _onPuzzleReset(PuzzleReset event, Emitter<PuzzleState> emit) {
     final puzzle = _generatePuzzle(_size, shuffle: true);
+    final icons = _generateIcons(_size, shuffle: true);
     emit(
       PuzzleState(
+          icons: icons,
           puzzle: puzzle.sort(),
           score: state.score,
           numberOfMoves: state.numberOfMoves),
@@ -148,27 +144,41 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
         else if (i <= size)
           Tile(
             value: i,
-            icon: icons[0],
+            icon: state.icons[0] as IconData,
             currentPosition: currentPositions[i - 1],
           )
         else if (i <= 2 * size)
           Tile(
             value: i,
-            icon: icons[1],
+            icon: state.icons[1] as IconData,
             currentPosition: currentPositions[i - 1],
           )
         else if (i <= 3 * size)
           Tile(
             value: i,
-            icon: icons[2],
+            icon: state.icons[2] as IconData,
             currentPosition: currentPositions[i - 1],
           )
         else
           Tile(
             value: i,
-            icon: icons[3],
+            icon: state.icons[3] as IconData,
             currentPosition: currentPositions[i - 1],
           )
     ];
+  }
+
+  List<IconData> _generateIcons(int size, {bool shuffle = false}) {
+    //final icons = <dynamic>[];
+    final iconPositions = List<int>.generate(size, (index) => index++);
+    if (shuffle) {
+      /// shuffle only once
+      iconPositions.shuffle(random);
+    }
+
+    return [
+      for (int i = 0; i < size; i++) state.icons[iconPositions[i]] as IconData
+    ];
+    //return icons;
   }
 }

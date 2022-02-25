@@ -1,12 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:very_good_slide_puzzle/audio_control/audio_control.dart';
-import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
-import 'package:very_good_slide_puzzle/helpers/helpers.dart';
+import 'package:very_good_slide_puzzle/dashatar/widgets/dashatar_puzzle_icons.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
-import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 
 abstract class _BoardSize {
   static double small = 312;
@@ -39,23 +33,49 @@ class _DashatarPuzzleBoardState extends State<DashatarPuzzleBoard> {
 
   @override
   Widget build(BuildContext context) {
-    return ResponsiveLayoutBuilder(
-      small: (_, child) => SizedBox.square(
-        key: const Key('dashatar_puzzle_board_small'),
-        dimension: _BoardSize.small,
-        child: child,
-      ),
-      medium: (_, child) => SizedBox.square(
-        key: const Key('dashatar_puzzle_board_medium'),
-        dimension: _BoardSize.medium,
-        child: child,
-      ),
-      large: (_, child) => SizedBox.square(
-        key: const Key('dashatar_puzzle_board_large'),
-        dimension: _BoardSize.large,
-        child: child,
-      ),
-      child: (_) => Stack(children: widget.tiles),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ResponsiveLayoutBuilder(
+          small: (_, child) => SizedBox.square(
+            key: const Key('dashatar_puzzle_board_small'),
+            dimension: _BoardSize.small,
+            child: child,
+          ),
+          medium: (_, child) => SizedBox.square(
+            key: const Key('dashatar_puzzle_board_medium'),
+            dimension: _BoardSize.medium,
+            child: child,
+          ),
+          large: (_, child) => SizedBox.square(
+            key: const Key('dashatar_puzzle_board_large'),
+            dimension: _BoardSize.large,
+            child: child,
+          ),
+          child: (_) => Stack(children: widget.tiles),
+        ),
+        ResponsiveLayoutBuilder(
+          small: (_, child) => SizedBox(
+            key: const Key('dashatar_puzzle_icons_small'),
+            height: _BoardSize.small,
+            width: 100,
+            child: child,
+          ),
+          medium: (_, child) => SizedBox(
+            key: const Key('dashatar_puzzle_icons_medium'),
+            height: _BoardSize.medium,
+            width: 125,
+            child: child,
+          ),
+          large: (_, child) => SizedBox(
+            key: const Key('dashatar_puzzle_icons_large'),
+            height: _BoardSize.large,
+            width: 150,
+            child: child,
+          ),
+          child: (_) => const DashatarPuzzleIcons(),
+        )
+      ],
     );
   }
 }
