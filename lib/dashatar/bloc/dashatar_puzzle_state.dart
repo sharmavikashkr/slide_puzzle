@@ -17,12 +17,24 @@ enum DashatarPuzzleStatus {
   stopped,
 }
 
+enum DashatarPuzzleLevel {
+  /// timeout: 60
+  easy,
+
+  /// timeout: 45
+  medium,
+
+  /// timeout: 30
+  hard,
+}
+
 class DashatarPuzzleState extends Equatable {
   const DashatarPuzzleState({
     required this.secondsToBegin,
-    required this.secondsToReset,
     this.isCountdownRunning = false,
+    this.secondsToReset = 45,
     this.isGameCountdownRunning = false,
+    this.level = DashatarPuzzleLevel.medium,
   });
 
   /// Whether the countdown of this puzzle is currently running.
@@ -31,9 +43,14 @@ class DashatarPuzzleState extends Equatable {
   /// The number of seconds before the puzzle is started.
   final int secondsToBegin;
 
+  /// Whether the game countdown is running
   final bool isGameCountdownRunning;
 
+  /// The number of seconds before the puzzle is reset.
   final int secondsToReset;
+
+  /// game level
+  final DashatarPuzzleLevel level;
 
   /// The status of the current puzzle.
   DashatarPuzzleStatus get status => isCountdownRunning && secondsToBegin > 0
@@ -44,12 +61,17 @@ class DashatarPuzzleState extends Equatable {
               : DashatarPuzzleStatus.stopped)
           : DashatarPuzzleStatus.notStarted);
 
+  int get secondsToResetTotal => level == DashatarPuzzleLevel.easy
+      ? 60
+      : (level == DashatarPuzzleLevel.medium ? 45 : 30);
+
   @override
   List<Object> get props => [
         isCountdownRunning,
         secondsToBegin,
         isGameCountdownRunning,
-        secondsToReset
+        secondsToReset,
+        level,
       ];
 
   DashatarPuzzleState copyWith({
@@ -57,6 +79,7 @@ class DashatarPuzzleState extends Equatable {
     int? secondsToBegin,
     bool? isGameCountdownRunning,
     int? secondsToReset,
+    DashatarPuzzleLevel? level,
   }) {
     return DashatarPuzzleState(
       isCountdownRunning: isCountdownRunning ?? this.isCountdownRunning,
@@ -64,6 +87,7 @@ class DashatarPuzzleState extends Equatable {
       isGameCountdownRunning:
           isGameCountdownRunning ?? this.isGameCountdownRunning,
       secondsToReset: secondsToReset ?? this.secondsToReset,
+      level: level ?? this.level,
     );
   }
 }

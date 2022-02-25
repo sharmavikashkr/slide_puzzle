@@ -15,7 +15,6 @@ class DashatarPuzzleBloc
   /// {@macro dashatar_puzzle_bloc}
   DashatarPuzzleBloc({
     required this.secondsToBegin,
-    required this.secondsToReset,
     required Ticker ticker,
     required Ticker gameTicker,
   })  : _ticker = ticker,
@@ -23,7 +22,6 @@ class DashatarPuzzleBloc
         super(
           DashatarPuzzleState(
             secondsToBegin: secondsToBegin,
-            secondsToReset: secondsToReset,
           ),
         ) {
     on<DashatarCountdownStarted>(_onCountdownStarted);
@@ -34,14 +32,12 @@ class DashatarPuzzleBloc
     on<DashatarGameCountdownStarted>(_onGameCountdownStarted);
     on<DashatarGameCountdownTicked>(_onGameCountdownTicked);
     on<DashatarGameCountdownStopped>(_onGameCountdownStopped);
-    on<DashatarGameCountdownReset>(_onGameCountdownReset);
+
+    on<DashatarLevelChanged>(_onDashatarLevelChanged);
   }
 
   /// The number of seconds before the puzzle is started.
   final int secondsToBegin;
-
-  /// The number of seconds before the puzzle is reset.
-  final int secondsToReset;
 
   final Ticker _ticker;
 
@@ -75,7 +71,7 @@ class DashatarPuzzleBloc
     emit(
       state.copyWith(
         isGameCountdownRunning: true,
-        secondsToReset: secondsToReset,
+        secondsToReset: state.secondsToResetTotal,
       ),
     );
     _gameTickerSubscription = _gameTicker
@@ -105,7 +101,7 @@ class DashatarPuzzleBloc
       emit(
         state.copyWith(
           isCountdownRunning: false,
-          secondsToReset: secondsToReset,
+          secondsToReset: state.secondsToResetTotal,
         ),
       );
       _startGameTicker(emit);
@@ -137,7 +133,7 @@ class DashatarPuzzleBloc
       state.copyWith(
         isCountdownRunning: true,
         secondsToBegin: secondsToBegin,
-        secondsToReset: secondsToReset,
+        secondsToReset: state.secondsToResetTotal,
         isGameCountdownRunning: false,
       ),
     );
@@ -148,12 +144,6 @@ class DashatarPuzzleBloc
     Emitter<DashatarPuzzleState> emit,
   ) {
     _startGameTicker(emit);
-    emit(
-      state.copyWith(
-        isGameCountdownRunning: true,
-        secondsToReset: secondsToReset,
-      ),
-    );
   }
 
   void _onGameCountdownTicked(
@@ -165,7 +155,7 @@ class DashatarPuzzleBloc
       emit(
         state.copyWith(
           isGameCountdownRunning: false,
-          secondsToReset: secondsToReset,
+          secondsToReset: state.secondsToResetTotal,
         ),
       );
       _startTicker(emit);
@@ -182,20 +172,23 @@ class DashatarPuzzleBloc
     emit(
       state.copyWith(
         isGameCountdownRunning: false,
-        secondsToReset: secondsToReset,
+        secondsToReset: state.secondsToResetTotal,
       ),
     );
   }
 
-  void _onGameCountdownReset(
-    DashatarGameCountdownReset event,
+  void _onDashatarLevelChanged(
+    DashatarLevelChanged event,
     Emitter<DashatarPuzzleState> emit,
   ) {
-    _startGameTicker(emit);
+    emit(state.copyWith(level: event.level));
+    _gameTickerSubscription?.pause();
     emit(
       state.copyWith(
-        isGameCountdownRunning: true,
-        secondsToReset: secondsToReset,
+        isCountdownRunning: false,
+        secondsToBegin: secondsToBegin,
+        secondsToReset: state.secondsToResetTotal,
+        isGameCountdownRunning: false,
       ),
     );
   }

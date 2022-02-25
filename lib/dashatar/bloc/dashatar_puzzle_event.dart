@@ -40,3 +40,13 @@ class DashatarGameCountdownStopped extends DashatarPuzzleEvent {
 class DashatarGameCountdownReset extends DashatarPuzzleEvent {
   const DashatarGameCountdownReset();
 }
+
+class DashatarLevelChanged extends DashatarPuzzleEvent {
+  const DashatarLevelChanged({required this.level});
+
+  /// The index of the changed theme in [DashatarThemeState.themes].
+  final DashatarPuzzleLevel level;
+
+  @override
+  List<Object> get props => [level];
+}

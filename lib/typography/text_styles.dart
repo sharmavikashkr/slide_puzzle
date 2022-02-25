@@ -124,7 +124,7 @@ class PuzzleTextStyle {
   /// Countdown text style
   static TextStyle get countdownTime {
     return _baseTextStyle.copyWith(
-      fontSize: 300,
+      fontSize: 200,
       height: 1,
       fontWeight: PuzzleFontWeight.bold,
     );

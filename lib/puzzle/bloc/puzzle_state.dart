@@ -8,11 +8,12 @@ const _icons = <IconData>[
   Icons.delete_outline_sharp,
   Icons.music_note_sharp,
   Icons.umbrella_sharp,
-  Icons.sports_football_sharp
+  Icons.sports_football_sharp,
+  Icons.star_border_sharp,
+  Icons.access_alarm_sharp,
 ];
 
 class PuzzleState extends Equatable {
-
   const PuzzleState({
     this.icons = _icons,
     this.puzzle = const Puzzle(tiles: []),

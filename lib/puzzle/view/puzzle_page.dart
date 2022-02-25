@@ -30,7 +30,6 @@ class PuzzlePage extends StatelessWidget {
         BlocProvider(
           create: (_) => DashatarPuzzleBloc(
             secondsToBegin: 3,
-            secondsToReset: 45,
             ticker: const Ticker(),
             gameTicker: const Ticker(),
           ),

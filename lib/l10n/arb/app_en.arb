@@ -12,9 +12,17 @@
     "@puzzleChallengeTitle": {
         "description": "Shown as the title of the puzzle"
     },
-    "puzzleChallengeSubTitle": "Match the row based on their icon",
+    "puzzleChallengeSubTitle": "Match the row with the expected icon",
     "@puzzleChallengeSubTitle": {
         "description": "Shown as the subtitle of the puzzle"
+    },
+    "puzzleSelectTheme": "Please select a theme",
+    "@puzzleSelectTheme": {
+        "description": "Option to select a theme"
+    },
+    "puzzleSelectLevel": "Please select a level",
+    "@puzzleSelectLevel": {
+        "description": "Option to select a level"
     },
     "puzzleNumberOfMoves": "Moves",
     "@puzzleNumberOfMoves": {

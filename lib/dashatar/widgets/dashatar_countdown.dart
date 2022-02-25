@@ -249,7 +249,7 @@ class _DashatarCountdownGoState extends State<DashatarCountdownGo>
     final theme = context.select((DashatarThemeBloc bloc) => bloc.state.theme);
 
     return Padding(
-      padding: const EdgeInsets.only(top: 101),
+      padding: const EdgeInsets.only(top: 70),
       child: FadeTransition(
         opacity: outOpacity,
         child: FadeTransition(

@@ -47,52 +47,62 @@ class _DashatarPuzzleIconsState extends State<DashatarPuzzleIcons> {
   @override
   Widget build(BuildContext context) {
     final icons = context.select((PuzzleBloc bloc) => bloc.state.icons);
+    final size =
+        context.select((PuzzleBloc bloc) => bloc.state.puzzle.getDimension());
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         ...List.generate(
-          icons.length,
-          (index) => ResponsiveLayoutBuilder(
-            key: ValueKey(Random().nextDouble()),
-            small: (_, child) => SizedBox(
-              height: _BoxHeight.small,
-              width: _BoxWidth.small,
-              child: child,
+          size,
+          (index) => AnimatedAlign(
+            alignment: FractionalOffset(
+              0,
+              index / (size - 1),
             ),
-            medium: (_, child) => SizedBox(
-              height: _BoxHeight.medium,
-              width: _BoxWidth.medium,
-              child: child,
-            ),
-            large: (_, child) => SizedBox(
-              height: _BoxHeight.large,
-              width: _BoxWidth.large,
-              child: child,
-            ),
-            child: (_) => ResponsiveLayoutBuilder(
-              small: (_, child) => Center(
-                child: SizedBox.square(
-                  dimension: _IconSize.small,
-                  child: child,
-                ),
+            duration: const Duration(milliseconds: 800),
+            curve: Curves.easeInOut,
+            child: ResponsiveLayoutBuilder(
+              key: ValueKey(Random().nextDouble()),
+              small: (_, child) => SizedBox(
+                height: _BoxHeight.small,
+                width: _BoxWidth.small,
+                child: child,
               ),
-              medium: (_, child) => Center(
-                child: SizedBox.square(
-                  dimension: _IconSize.medium,
-                  child: child,
-                ),
+              medium: (_, child) => SizedBox(
+                height: _BoxHeight.medium,
+                width: _BoxWidth.medium,
+                child: child,
               ),
-              large: (_, child) => Center(
-                child: SizedBox.square(
-                  dimension: _IconSize.large,
-                  child: child,
-                ),
+              large: (_, child) => SizedBox(
+                height: _BoxHeight.large,
+                width: _BoxWidth.large,
+                child: child,
               ),
-              child: (_) => FittedBox(
-                fit: BoxFit.fitWidth,
-                child: Icon(
-                  icons[index] as IconData,
-                  color: Colors.white,
+              child: (_) => ResponsiveLayoutBuilder(
+                small: (_, child) => Center(
+                  child: SizedBox.square(
+                    dimension: _IconSize.small,
+                    child: child,
+                  ),
+                ),
+                medium: (_, child) => Center(
+                  child: SizedBox.square(
+                    dimension: _IconSize.medium,
+                    child: child,
+                  ),
+                ),
+                large: (_, child) => Center(
+                  child: SizedBox.square(
+                    dimension: _IconSize.large,
+                    child: child,
+                  ),
+                ),
+                child: (_) => FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Icon(
+                    icons[index] as IconData,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),

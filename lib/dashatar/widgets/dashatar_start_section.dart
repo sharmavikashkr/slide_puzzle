@@ -39,6 +39,7 @@ class DashatarStartSection extends StatelessWidget {
           key: puzzleTitleKey,
           title: context.l10n.puzzleChallengeTitle,
         ),
+        const ResponsiveGap(large: 8),
         PuzzleSubTitle(
           key: puzzleSubTitleKey,
           title: context.l10n.puzzleChallengeSubTitle,

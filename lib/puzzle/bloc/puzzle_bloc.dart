@@ -45,18 +45,18 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
           numberOfMoves: state.numberOfMoves + 1,
         ),
       );
-      for (var i = 0; i < 4; i++) {
+      for (var i = 0; i < _size; i++) {
         var matched = 0;
-        for (var j = 0; j < 4; j++) {
-          if (puzzleSorted.tiles[i * 4 + j].icon == state.icons[i]) {
+        for (var j = 0; j < _size; j++) {
+          if (puzzleSorted.tiles[i * _size + j].icon == state.icons[i]) {
             matched++;
           }
         }
-        if (matched == 4) {
-          for (var j = 0; j < 4; j++) {
-            puzzleSorted.tiles[i * 4 + j].icon =
-                state.icons[Random().nextInt(4)] as IconData;
-            puzzleSorted.tiles[i * 4 + j].flip = true;
+        if (matched == _size) {
+          for (var j = 0; j < _size; j++) {
+            puzzleSorted.tiles[i * _size + j].icon =
+                state.icons[Random().nextInt(_size)] as IconData;
+            puzzleSorted.tiles[i * _size + j].flip = true;
           }
           emit(
             state.copyWith(
@@ -141,28 +141,10 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
             currentPosition: currentPositions[i - 1],
             isWhitespace: true,
           )
-        else if (i <= size)
-          Tile(
-            value: i,
-            icon: state.icons[0] as IconData,
-            currentPosition: currentPositions[i - 1],
-          )
-        else if (i <= 2 * size)
-          Tile(
-            value: i,
-            icon: state.icons[1] as IconData,
-            currentPosition: currentPositions[i - 1],
-          )
-        else if (i <= 3 * size)
-          Tile(
-            value: i,
-            icon: state.icons[2] as IconData,
-            currentPosition: currentPositions[i - 1],
-          )
         else
           Tile(
             value: i,
-            icon: state.icons[3] as IconData,
+            icon: state.icons[((i-1) ~/ size)] as IconData,
             currentPosition: currentPositions[i - 1],
           )
     ];
