@@ -26,9 +26,11 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     Emitter<PuzzleState> emit,
   ) {
     final puzzle = _generatePuzzle(_size);
+    final icons = _generateIcons(_size);
     emit(
       PuzzleState(
         puzzle: puzzle.sort(),
+        icons: icons
       ),
     );
   }
@@ -104,10 +106,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
       currentPositions.shuffle(random);
     }
 
-    final tiles = _getTileListFromPositions(
-      size,
-      currentPositions,
-    );
+    final tiles = _getTileListFromPositions(size, currentPositions);
 
     final puzzle = Puzzle(tiles: tiles);
 
@@ -144,23 +143,18 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
         else
           Tile(
             value: i,
-            icon: state.icons[((i-1) ~/ size)] as IconData,
+            icon: state.icons[((i - 1) ~/ size)],
             currentPosition: currentPositions[i - 1],
           )
     ];
   }
 
   List<IconData> _generateIcons(int size, {bool shuffle = false}) {
-    //final icons = <dynamic>[];
     final iconPositions = List<int>.generate(size, (index) => index++);
     if (shuffle) {
       /// shuffle only once
       iconPositions.shuffle(random);
     }
-
-    return [
-      for (int i = 0; i < size; i++) state.icons[iconPositions[i]] as IconData
-    ];
-    //return icons;
+    return [for (int i = 0; i < size; i++) state.icons[iconPositions[i]]];
   }
 }

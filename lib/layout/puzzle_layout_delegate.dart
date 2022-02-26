@@ -41,7 +41,7 @@ abstract class PuzzleLayoutDelegate extends Equatable {
   ///
   /// The board should display the list of [tiles],
   /// each built with [tileBuilder].
-  Widget boardBuilder(PuzzleState state, int size, List<Widget> tiles);
+  Widget boardBuilder(PuzzleState state, int size, List<Widget> tiles, List<Widget> icons);
 
   /// A widget builder for the puzzle tile associated
   /// with [tile] and based on the puzzle [state].
@@ -49,6 +49,13 @@ abstract class PuzzleLayoutDelegate extends Equatable {
   /// To complete the puzzle, all tiles must be arranged
   /// in order by their [Tile.value].
   Widget tileBuilder(Tile tile, PuzzleState state);
+
+  /// A widget builder for the puzzle tile associated
+  /// with [tile] and based on the puzzle [state].
+  ///
+  /// To complete the puzzle, all tiles must be arranged
+  /// in order by their [Tile.value].
+  Widget iconBuilder(int index, PuzzleState state);
 
   /// A widget builder for the whitespace puzzle tile.
   Widget whitespaceTileBuilder();

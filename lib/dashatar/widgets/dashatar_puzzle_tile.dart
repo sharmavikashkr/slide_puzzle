@@ -50,42 +50,16 @@ class DashatarPuzzleTile extends StatefulWidget {
 
 /// The state of [DashatarPuzzleTile].
 @visibleForTesting
-class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
-    with SingleTickerProviderStateMixin {
+class DashatarPuzzleTileState extends State<DashatarPuzzleTile> {
   AudioPlayer? _audioPlayer;
-  late final Timer _timer;
-
-  /// The controller that drives [_scale] animation.
-  late AnimationController _controller;
-  late Animation<double> _scale;
 
   @override
   void initState() {
     super.initState();
-
-    _controller = AnimationController(
-      vsync: this,
-      duration: PuzzleThemeAnimationDuration.puzzleTileScale,
-    );
-
-    _scale = Tween<double>(begin: 1, end: 0.94).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0, 1, curve: Curves.easeInOut),
-      ),
-    );
-
-    // Delay the initialization of the audio player for performance reasons,
-    // to avoid dropping frames when the theme is changed.
-    _timer = Timer(const Duration(seconds: 1), () {
-      _audioPlayer = widget._audioPlayerFactory()
-        ..setAsset('assets/audio/tile_move.mp3');
-    });
   }
 
   @override
   void dispose() {
-    _timer.cancel();
     _audioPlayer?.dispose();
     super.dispose();
   }
@@ -121,8 +95,6 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
         ? const Duration(milliseconds: 800)
         : const Duration(milliseconds: 370);
 
-    final canPress = hasStarted;
-
     return AudioControlListener(
       audioPlayer: _audioPlayer,
       child: AnimatedAlign(
@@ -133,10 +105,9 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
         duration: movementDuration,
         curve: Curves.easeInOut,
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 1000),
+          duration: const Duration(seconds: 1),
           transitionBuilder: __transitionBuilder,
           child: ResponsiveLayoutBuilder(
-            key: ValueKey(Random().nextDouble()),
             small: (_, child) => SizedBox.square(
               key: Key('dashatar_puzzle_tile_small_${widget.tile.value}'),
               dimension: _TileSize.small,
@@ -152,66 +123,48 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
               dimension: _TileSize.large,
               child: child,
             ),
-            child: (_) => MouseRegion(
-              onEnter: (_) {
-                if (canPress) {
-                  _controller.forward();
-                }
-              },
-              onExit: (_) {
-                if (canPress) {
-                  _controller.reverse();
-                }
-              },
-              child: ScaleTransition(
-                key: Key('dashatar_puzzle_tile_scale_${widget.tile.value}'),
-                scale: _scale,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    primary: PuzzleColors.black,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(12),
-                      ),
-                    ),
-                    backgroundColor: theme.defaultColor,
+            child: (_) => TextButton(
+              style: TextButton.styleFrom(
+                primary: PuzzleColors.black,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(12),
                   ),
-                  onPressed: canPress
-                      ? () {
-                          context
-                              .read<PuzzleBloc>()
-                              .add(TileTapped(widget.tile));
-                          unawaited(_audioPlayer?.replay());
-                        }
-                      : null,
-                  child: ResponsiveLayoutBuilder(
-                    small: (_, child) => SizedBox.square(
-                      key: Key(
-                        'dashatar_puzzle_tile_icon_small_${widget.tile.value}',
-                      ),
-                      dimension: 30,
-                      child: child,
-                    ),
-                    medium: (_, child) => SizedBox.square(
-                      key: Key(
-                        'dashatar_puzzle_tile_icon_small_${widget.tile.value}',
-                      ),
-                      dimension: 40,
-                      child: child,
-                    ),
-                    large: (_, child) => SizedBox.square(
-                      key: Key(
-                        'dashatar_puzzle_tile_icon_small_${widget.tile.value}',
-                      ),
-                      dimension: 50,
-                      child: child,
-                    ),
-                    child: (_) => FittedBox(
-                      fit: BoxFit.fill,
-                      child: Icon(
-                        widget.tile.icon,
-                      ),
-                    ),
+                ),
+                backgroundColor: theme.defaultColor,
+              ),
+              onPressed: hasStarted
+                  ? () {
+                      context.read<PuzzleBloc>().add(TileTapped(widget.tile));
+                      unawaited(_audioPlayer?.replay());
+                    }
+                  : null,
+              child: ResponsiveLayoutBuilder(
+                small: (_, child) => SizedBox.square(
+                  key: Key(
+                    'dashatar_puzzle_tile_tile_icon_small_${widget.tile.value}',
+                  ),
+                  dimension: 30,
+                  child: child,
+                ),
+                medium: (_, child) => SizedBox.square(
+                  key: Key(
+                    'dashatar_puzzle_tile_tile_icon_small_${widget.tile.value}',
+                  ),
+                  dimension: 40,
+                  child: child,
+                ),
+                large: (_, child) => SizedBox.square(
+                  key: Key(
+                    'dashatar_puzzle_tile_tile_icon_small_${widget.tile.value}',
+                  ),
+                  dimension: 50,
+                  child: child,
+                ),
+                child: (_) => FittedBox(
+                  fit: BoxFit.fill,
+                  child: Icon(
+                    widget.tile.icon,
                   ),
                 ),
               ),

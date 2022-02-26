@@ -22,7 +22,7 @@ class PuzzleState extends Equatable {
   });
 
   /// [Puzzle] containing the current list of icons.
-  final List icons;
+  final List<IconData> icons;
 
   /// [Puzzle] containing the current tile arrangement.
   final Puzzle puzzle;
@@ -34,7 +34,7 @@ class PuzzleState extends Equatable {
   final int score;
 
   PuzzleState copyWith({
-    List? icons,
+    List<IconData>? icons,
     Puzzle? puzzle,
     int? numberOfMoves,
     int? score,

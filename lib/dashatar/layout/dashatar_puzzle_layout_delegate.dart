@@ -5,7 +5,7 @@ import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 
 import '../../colors/colors.dart';
-import '../widgets/dashatar_puzzle_icons.dart';
+import '../widgets/dashatar_puzzle_icon.dart';
 
 /// {@template dashatar_puzzle_layout_delegate}
 /// A delegate for computing the layout of the puzzle UI
@@ -78,7 +78,8 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   }
 
   @override
-  Widget boardBuilder(PuzzleState state, int size, List<Widget> tiles) {
+  Widget boardBuilder(
+      PuzzleState state, int size, List<Widget> tiles, List<Widget> icons) {
     return Stack(
       children: [
         Positioned(
@@ -98,7 +99,7 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
               medium: 34,
               large: 96,
             ),
-            DashatarPuzzleBoard(tiles: tiles),
+            DashatarPuzzleBoard(tiles: tiles, icons: icons),
             const ResponsiveGap(
               small: 21,
               medium: 34,
@@ -114,6 +115,14 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
   Widget tileBuilder(Tile tile, PuzzleState state) {
     return DashatarPuzzleTile(
       tile: tile,
+      state: state,
+    );
+  }
+
+  @override
+  Widget iconBuilder(int index, PuzzleState state) {
+    return DashatarPuzzleIcon(
+      index: index,
       state: state,
     );
   }

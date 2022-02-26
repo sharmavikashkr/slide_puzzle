@@ -16,11 +16,11 @@
     "@puzzleChallengeSubTitle": {
         "description": "Shown as the subtitle of the puzzle"
     },
-    "puzzleSelectTheme": "Please select a theme",
+    "puzzleSelectTheme": "Select a theme",
     "@puzzleSelectTheme": {
         "description": "Option to select a theme"
     },
-    "puzzleSelectLevel": "Please select a level",
+    "puzzleSelectLevel": "Select a level",
     "@puzzleSelectLevel": {
         "description": "Option to select a level"
     },

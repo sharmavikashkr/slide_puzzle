@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:very_good_slide_puzzle/dashatar/widgets/dashatar_puzzle_icons.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
 
 abstract class _BoardSize {
@@ -16,10 +15,14 @@ class DashatarPuzzleBoard extends StatefulWidget {
   const DashatarPuzzleBoard({
     Key? key,
     required this.tiles,
+    required this.icons,
   }) : super(key: key);
 
   /// The tiles to be displayed on the board.
   final List<Widget> tiles;
+
+  /// The icons to be displayed on the board.
+  final List<Widget> icons;
 
   @override
   State<DashatarPuzzleBoard> createState() => _DashatarPuzzleBoardState();
@@ -58,22 +61,22 @@ class _DashatarPuzzleBoardState extends State<DashatarPuzzleBoard> {
           small: (_, child) => SizedBox(
             key: const Key('dashatar_puzzle_icons_small'),
             height: _BoardSize.small,
-            width: 100,
+            width: 50,
             child: child,
           ),
           medium: (_, child) => SizedBox(
             key: const Key('dashatar_puzzle_icons_medium'),
             height: _BoardSize.medium,
-            width: 125,
+            width: 75,
             child: child,
           ),
           large: (_, child) => SizedBox(
             key: const Key('dashatar_puzzle_icons_large'),
             height: _BoardSize.large,
-            width: 150,
+            width: 100,
             child: child,
           ),
-          child: (_) => const DashatarPuzzleIcons(),
+          child: (_) => Stack(children: widget.icons),
         )
       ],
     );

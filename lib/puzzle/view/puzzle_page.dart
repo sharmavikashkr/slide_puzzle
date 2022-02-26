@@ -256,11 +256,15 @@ class PuzzleBoard extends StatelessWidget {
               ),
             )
             .toList(),
+        state.icons
+            .map((icon) => _PuzzleIcon(index: state.icons.indexOf(icon)))
+            .toList(),
       ),
     );
   }
 }
 
+/// Puzzle tile widget
 class _PuzzleTile extends StatelessWidget {
   const _PuzzleTile({
     Key? key,
@@ -278,6 +282,25 @@ class _PuzzleTile extends StatelessWidget {
     return tile.isWhitespace
         ? theme.layoutDelegate.whitespaceTileBuilder()
         : theme.layoutDelegate.tileBuilder(tile, state);
+  }
+}
+
+/// Puzzle row icon widget
+class _PuzzleIcon extends StatelessWidget {
+  const _PuzzleIcon({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
+
+  /// The tile to be displayed.
+  final int index;
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = context.read<DashatarThemeBloc>().state.theme;
+    final state = context.select((PuzzleBloc bloc) => bloc.state);
+
+    return theme.layoutDelegate.iconBuilder(index, state);
   }
 }
 

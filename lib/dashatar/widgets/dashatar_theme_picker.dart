@@ -29,9 +29,9 @@ class DashatarThemePicker extends StatefulWidget {
         super(key: key);
 
   static const _activeThemeNormalSize = 130.0;
-  static const _activeThemeSmallSize = 75.0;
+  static const _activeThemeSmallSize = 85.0;
   static const _inactiveThemeNormalSize = 106.0;
-  static const _inactiveThemeSmallSize = 60.0;
+  static const _inactiveThemeSmallSize = 70.0;
 
   final AudioPlayerFactory _audioPlayerFactory;
 
@@ -186,15 +186,14 @@ class _DashatarThemePickerState extends State<DashatarThemePicker> {
                           child: GestureDetector(
                             key: Key('dashatar_theme_picker_$index'),
                             onTap: () async {
-                              if (isActiveLevel) {
-                                return;
-                              }
+                                    if (isActiveLevel) {
+                                      return;
+                                    }
 
-                              // Update the current Dashatar theme.
-                              context
-                                  .read<DashatarPuzzleBloc>()
-                                  .add(DashatarLevelChanged(level: level));
-                            },
+                                    // Update the current Dashatar theme.
+                                    context.read<DashatarPuzzleBloc>().add(
+                                        DashatarLevelChanged(level: level));
+                                  },
                             child: AnimatedContainer(
                               width: size,
                               height: size,
