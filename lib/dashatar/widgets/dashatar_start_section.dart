@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
+import 'package:very_good_slide_puzzle/colors/colors.dart';
 import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
 import 'package:very_good_slide_puzzle/l10n/l10n.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 import 'package:very_good_slide_puzzle/theme/theme.dart';
 
+import '../../audio_control/bloc/audio_control_bloc.dart';
+import '../../helpers/helpers.dart';
 import '../../theme/widgets/puzzle_subtitle.dart';
+import 'dashatar_share_dialog_button.dart';
 
 /// {@template dashatar_start_section}
 /// Displays the start section of the puzzle based on [state].
@@ -62,7 +67,14 @@ class DashatarStartSection extends StatelessWidget {
         ResponsiveLayoutBuilder(
           small: (_, __) => const SizedBox(),
           medium: (_, __) => const SizedBox(),
-          large: (_, __) => const DashatarPuzzleActionButton(),
+          large: (_, __) => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              DashatarPuzzleActionButton(),
+              Gap(20),
+              DashatarShareDialogButton(),
+            ],
+          ),
         ),
         ResponsiveLayoutBuilder(
           small: (_, __) => const DashatarTimer(),

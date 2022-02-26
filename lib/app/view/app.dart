@@ -60,20 +60,6 @@ class _AppState extends State<App> {
     _platformHelper = widget._platformHelperFactory();
 
     _timer = Timer(const Duration(milliseconds: 20), () {
-      for (var i = 1; i <= 15; i++) {
-        precacheImage(
-          Image.asset('assets/images/dashatar/green/$i.png').image,
-          context,
-        );
-        precacheImage(
-          Image.asset('assets/images/dashatar/blue/$i.png').image,
-          context,
-        );
-        precacheImage(
-          Image.asset('assets/images/dashatar/yellow/$i.png').image,
-          context,
-        );
-      }
       precacheImage(
         Image.asset('assets/images/dashatar/gallery/green.png').image,
         context,
@@ -112,18 +98,6 @@ class _AppState extends State<App> {
       );
       precacheImage(
         Image.asset('assets/images/timer_icon.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/simple_dash_large.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/simple_dash_medium.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/simple_dash_small.png').image,
         context,
       );
       precacheImage(

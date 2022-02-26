@@ -126,23 +126,16 @@ class DashatarScore extends StatelessWidget {
                         large: 32,
                       ),
                       AnimatedDefaultTextStyle(
-                        key: const Key('dashatar_score_score'),
-                        style: PuzzleTextStyle.headline5.copyWith(
-                          color: theme.defaultColor,
+                        key: const Key('dashatar_score'),
+                        style: numberOfMovesTextStyle.copyWith(
+                          color: PuzzleColors.white,
                         ),
                         duration: PuzzleThemeAnimationDuration.textStyle,
-                        child: Text(l10n.dashatarSuccessScore),
-                      ),
-                      const ResponsiveGap(
-                        small: 8,
-                        medium: 9,
-                        large: 9,
-                      ),
-                      DashatarTimer(
-                        textStyle: timerTextStyle,
-                        iconSize: timerIconSize,
-                        iconPadding: timerIconPadding,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        child: Text(
+                          l10n.dashatarSuccessScore(
+                            state.score.toString(),
+                          ),
+                        ),
                       ),
                       const ResponsiveGap(
                         small: 2,

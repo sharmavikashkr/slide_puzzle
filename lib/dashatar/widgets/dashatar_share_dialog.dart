@@ -1,8 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:very_good_slide_puzzle/audio_control/audio_control.dart';
 import 'package:very_good_slide_puzzle/colors/colors.dart';
 import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
 import 'package:very_good_slide_puzzle/helpers/helpers.dart';
@@ -16,11 +14,7 @@ class DashatarShareDialog extends StatefulWidget {
   /// {@macro dashatar_share_dialog}
   const DashatarShareDialog({
     Key? key,
-    AudioPlayerFactory? audioPlayer,
-  })  : _audioPlayerFactory = audioPlayer ?? getAudioPlayer,
-        super(key: key);
-
-  final AudioPlayerFactory _audioPlayerFactory;
+  });
 
   @override
   State<DashatarShareDialog> createState() => _DashatarShareDialogState();
@@ -29,19 +23,10 @@ class DashatarShareDialog extends StatefulWidget {
 class _DashatarShareDialogState extends State<DashatarShareDialog>
     with TickerProviderStateMixin {
   late final AnimationController _controller;
-  late final AudioPlayer _successAudioPlayer;
-  late final AudioPlayer _clickAudioPlayer;
 
   @override
   void initState() {
     super.initState();
-
-    _successAudioPlayer = widget._audioPlayerFactory()
-      ..setAsset('assets/audio/success.mp3');
-    unawaited(_successAudioPlayer.play());
-
-    _clickAudioPlayer = widget._audioPlayerFactory()
-      ..setAsset('assets/audio/click.mp3');
 
     _controller = AnimationController(
       vsync: this,
@@ -55,21 +40,13 @@ class _DashatarShareDialogState extends State<DashatarShareDialog>
 
   @override
   void dispose() {
-    _successAudioPlayer.dispose();
-    _clickAudioPlayer.dispose();
     _controller.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return AudioControlListener(
-      key: const Key('dashatar_share_dialog_success_audio_player'),
-      audioPlayer: _successAudioPlayer,
-      child: AudioControlListener(
-        key: const Key('dashatar_share_dialog_click_audio_player'),
-        audioPlayer: _clickAudioPlayer,
-        child: ResponsiveLayoutBuilder(
+    return ResponsiveLayoutBuilder(
           small: (_, child) => child!,
           medium: (_, child) => child!,
           large: (_, child) => child!,
@@ -147,7 +124,6 @@ class _DashatarShareDialogState extends State<DashatarShareDialog>
                       color: PuzzleColors.black,
                     ),
                     onPressed: () {
-                      unawaited(_clickAudioPlayer.play());
                       Navigator.of(context).pop();
                     },
                   ),
@@ -155,8 +131,6 @@ class _DashatarShareDialogState extends State<DashatarShareDialog>
               ],
             );
           },
-        ),
-      ),
     );
   }
 }

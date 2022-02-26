@@ -105,9 +105,10 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile> {
         duration: movementDuration,
         curve: Curves.easeInOut,
         child: AnimatedSwitcher(
-          duration: const Duration(seconds: 1),
+          duration: const Duration(milliseconds: 1000),
           transitionBuilder: __transitionBuilder,
           child: ResponsiveLayoutBuilder(
+            key: ValueKey(Random().nextDouble()),
             small: (_, child) => SizedBox.square(
               key: Key('dashatar_puzzle_tile_small_${widget.tile.value}'),
               dimension: _TileSize.small,

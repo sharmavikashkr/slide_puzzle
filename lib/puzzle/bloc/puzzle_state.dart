@@ -5,12 +5,10 @@ part of 'puzzle_bloc.dart';
 enum TileMovementStatus { nothingTapped, cannotBeMoved, moved }
 
 const _icons = <IconData>[
-  Icons.delete_outline_sharp,
-  Icons.music_note_sharp,
-  Icons.umbrella_sharp,
-  Icons.sports_football_sharp,
-  Icons.star_border_sharp,
-  Icons.access_alarm_sharp,
+  Icons.code_sharp,
+  Icons.coffee_sharp,
+  Icons.restaurant_sharp,
+  Icons.smoking_rooms_sharp,
 ];
 
 class PuzzleState extends Equatable {

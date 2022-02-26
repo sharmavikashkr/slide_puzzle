@@ -12,7 +12,7 @@
     "@puzzleChallengeTitle": {
         "description": "Shown as the title of the puzzle"
     },
-    "puzzleChallengeSubTitle": "Match the row with the expected icon",
+    "puzzleChallengeSubTitle": "A day in a developer's life is a juggle between writing code, eating, drinking coffee and cigarette breaks in random order. Do the ones you like the most by matching their row. Beware, these breaks are uncertain because of customer issues.",
     "@puzzleChallengeSubTitle": {
         "description": "Shown as the subtitle of the puzzle"
     },
@@ -52,6 +52,10 @@
     "@dashatarRestart": {
         "description": "Shown after the puzzle is stopped and may be restarted"
     },
+    "dashatarShare": "Share",
+    "@dashatarShare": {
+        "description": "Shown after the puzzle is started"
+    },
     "dashatarStop": "Stop",
     "@dashatarStop": {
         "description": "Shown after the puzzle is started and may be stopped"
@@ -68,9 +72,15 @@
     "@dashatarSuccessWellDone": {
         "description": "Shown as a subtitle in the Dashatar success state"
     },
-    "dashatarSuccessScore": "Score",
+    "dashatarSuccessScore": "Score: {score}",
     "@dashatarSuccessScore": {
-        "description": "Shown as a score title in the Dashatar success state"
+        "description": "Shown as a score title in the Dashatar success state",
+        "placeholders": {
+            "score": {
+                "type": "String",
+                "example": "5"
+            }
+        }
     },
     "dashatarSuccessNumberOfMoves": "{numberOfMoves} Moves",
     "@dashatarSuccessNumberOfMoves": {

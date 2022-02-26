@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
@@ -6,6 +7,7 @@ import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 
 import '../../colors/colors.dart';
 import '../widgets/dashatar_puzzle_icon.dart';
+import '../widgets/dashatar_share_dialog_button.dart';
 
 /// {@template dashatar_puzzle_layout_delegate}
 /// A delegate for computing the layout of the puzzle UI
@@ -18,14 +20,9 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
 
   @override
   Widget startSectionBuilder(PuzzleState state) {
-    return ResponsiveLayoutBuilder(
-      small: (_, child) => child!,
-      medium: (_, child) => child!,
-      large: (_, child) => Padding(
-        padding: const EdgeInsets.only(left: 50, right: 32),
-        child: child,
-      ),
-      child: (_) => DashatarStartSection(state: state),
+    return Padding(
+      padding: const EdgeInsets.only(left: 50, right: 50),
+      child: DashatarStartSection(state: state),
     );
   }
 
@@ -39,8 +36,22 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
           medium: 32,
         ),
         ResponsiveLayoutBuilder(
-          small: (_, child) => const DashatarPuzzleActionButton(),
-          medium: (_, child) => const DashatarPuzzleActionButton(),
+          small: (_, child) => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              DashatarPuzzleActionButton(),
+              Gap(10),
+              DashatarShareDialogButton(),
+            ],
+          ),
+          medium: (_, child) => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              DashatarPuzzleActionButton(),
+              Gap(20),
+              DashatarShareDialogButton(),
+            ],
+          ),
           large: (_, __) => const SizedBox(),
         ),
         const ResponsiveGap(

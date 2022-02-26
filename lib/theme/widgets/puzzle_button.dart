@@ -46,7 +46,7 @@ class PuzzleButton extends StatelessWidget {
         duration: PuzzleThemeAnimationDuration.textStyle,
         style: TextButton.styleFrom(
           padding: EdgeInsets.zero,
-          textStyle: PuzzleTextStyle.headline5,
+          textStyle: PuzzleTextStyle.label,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
           ),
