@@ -41,7 +41,4 @@ class YellowDashatarTheme extends DashatarTheme {
 
   @override
   String get audioAsset => 'assets/audio/sandwich.mp3';
-
-  @override
-  String get dashAssetsDirectory => 'assets/images/dashatar/yellow';
 }

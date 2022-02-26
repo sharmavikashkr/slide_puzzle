@@ -20,9 +20,19 @@ class DashatarPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
 
   @override
   Widget startSectionBuilder(PuzzleState state) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 50, right: 50),
-      child: DashatarStartSection(state: state),
+    return ResponsiveLayoutBuilder(
+      small: (_, child) => Padding(
+        padding: const EdgeInsets.only(left: 50, right: 50),
+        child: DashatarStartSection(state: state),
+      ),
+      medium: (_, child) => Padding(
+        padding: const EdgeInsets.only(left: 150, right: 150),
+        child: DashatarStartSection(state: state),
+      ),
+      large: (_, child) => Padding(
+        padding: const EdgeInsets.only(left: 50, right: 50),
+        child: DashatarStartSection(state: state),
+      ),
     );
   }
 

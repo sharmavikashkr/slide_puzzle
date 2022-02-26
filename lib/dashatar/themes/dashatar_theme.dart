@@ -67,9 +67,6 @@ abstract class DashatarTheme extends PuzzleTheme {
   /// The path to the audio asset of this theme.
   String get audioAsset;
 
-  /// The path to the directory with dash assets for all puzzle tiles.
-  String get dashAssetsDirectory;
-
   @override
   List<Object?> get props => [
         name,
@@ -91,7 +88,6 @@ abstract class DashatarTheme extends PuzzleTheme {
         countdownColor,
         themeAsset,
         successThemeAsset,
-        audioAsset,
-        dashAssetsDirectory
+        audioAsset
       ];
 }
