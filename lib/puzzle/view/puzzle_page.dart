@@ -1,12 +1,16 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:jam_slide_puzzle/audio_control/audio_control.dart';
+import 'package:jam_slide_puzzle/colors/colors.dart';
 import 'package:jam_slide_puzzle/jam/jam.dart';
 import 'package:jam_slide_puzzle/layout/layout.dart';
 import 'package:jam_slide_puzzle/models/models.dart';
 import 'package:jam_slide_puzzle/puzzle/puzzle.dart';
 import 'package:jam_slide_puzzle/theme/theme.dart';
+import 'package:jam_slide_puzzle/typography/typography.dart';
+import 'package:page_transition/page_transition.dart';
 
 /// {@template puzzle_page}
 /// The root page of the puzzle UI.
@@ -16,25 +20,57 @@ class PuzzlePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (_) => JamThemeBloc(
-            themes: const [BlueJamTheme(), GreenJamTheme(), YellowJamTheme()],
+    return AnimatedSplashScreen(
+      animationDuration: const Duration(seconds: 2),
+      splash: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: PuzzleColors.greenPrimary,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Just Another Monday",
+                style: PuzzleTextStyle.headline2.copyWith(
+                  color: PuzzleColors.white,
+                ),
+              ),
+              Text(
+                "A slide puzzle for coders",
+                style: PuzzleTextStyle.body.copyWith(
+                  color: PuzzleColors.white,
+                ),
+              ),
+            ],
           ),
         ),
-        BlocProvider(
-          create: (_) => JamPuzzleBloc(
-            secondsToBegin: 3,
-            ticker: const Ticker(),
-            gameTicker: const Ticker(),
+      ),
+      nextScreen: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (_) => JamThemeBloc(
+              themes: const [BlueJamTheme(), GreenJamTheme(), YellowJamTheme()],
+            ),
           ),
-        ),
-        BlocProvider(
-          create: (_) => AudioControlBloc(),
-        ),
-      ],
-      child: const PuzzleView(),
+          BlocProvider(
+            create: (_) => JamPuzzleBloc(
+              secondsToBegin: 3,
+              ticker: const Ticker(),
+              gameTicker: const Ticker(),
+            ),
+          ),
+          BlocProvider(
+            create: (_) => AudioControlBloc(),
+          ),
+        ],
+        child: const PuzzleView(),
+      ),
+      splashTransition: SplashTransition.decoratedBoxTransition,
+      pageTransitionType: PageTransitionType.bottomToTop,
+      curve: Curves.easeInOut,
+      splashIconSize: MediaQuery.of(context).size.width,
+      backgroundColor: PuzzleColors.greenPrimary,
     );
   }
 }

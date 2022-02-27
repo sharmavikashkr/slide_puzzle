@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jam_slide_puzzle/jam/jam.dart';
@@ -69,21 +71,20 @@ class NumberOfMovesAndScore extends StatelessWidget {
                   child: Text(numberOfMoves.toString()),
                 ),
                 AnimatedDefaultTextStyle(
-                  style: bodyTextStyle.copyWith(
+                  style: PuzzleTextStyle.headline4.copyWith(
                     color: textColor,
                   ),
                   duration: PuzzleThemeAnimationDuration.textStyle,
                   child: Text(' ${l10n.puzzleNumberOfMoves} | '),
                 ),
                 AnimatedDefaultTextStyle(
-                  style: bodyTextStyle.copyWith(
+                  style: PuzzleTextStyle.headline4.copyWith(
                     color: textColor,
                   ),
                   duration: PuzzleThemeAnimationDuration.textStyle,
                   child: Text(' ${l10n.score}'),
                 ),
                 AnimatedDefaultTextStyle(
-                  key: const Key('score'),
                   style: PuzzleTextStyle.headline4.copyWith(
                     color: textColor,
                   ),
