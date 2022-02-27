@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jam_slide_puzzle/audio_control/audio_control.dart';
-import 'package:jam_slide_puzzle/dashatar/dashatar.dart';
 import 'package:jam_slide_puzzle/helpers/helpers.dart';
+import 'package:jam_slide_puzzle/jam/jam.dart';
 import 'package:jam_slide_puzzle/models/models.dart';
 import 'package:jam_slide_puzzle/puzzle/puzzle.dart';
 import 'package:just_audio/just_audio.dart';
@@ -57,8 +57,8 @@ class _PuzzleKeyboardHandlerState extends State<PuzzleKeyboardHandler> {
   void _handleKeyEvent(RawKeyEvent event) {
     // The user may move tiles only when the puzzle is started.
     // There's no need to check the Simple theme as it is started by default.
-    final canMoveTiles = !(context.read<DashatarPuzzleBloc>().state.status !=
-        DashatarPuzzleStatus.started);
+    final canMoveTiles = !(context.read<JamPuzzleBloc>().state.status !=
+        JamPuzzleStatus.started);
 
     if (event is RawKeyDownEvent && canMoveTiles) {
       final puzzle = context.read<PuzzleBloc>().state.puzzle;

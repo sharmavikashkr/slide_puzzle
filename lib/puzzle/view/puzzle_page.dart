@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:jam_slide_puzzle/audio_control/audio_control.dart';
-import 'package:jam_slide_puzzle/dashatar/dashatar.dart';
+import 'package:jam_slide_puzzle/jam/jam.dart';
 import 'package:jam_slide_puzzle/layout/layout.dart';
 import 'package:jam_slide_puzzle/models/models.dart';
 import 'package:jam_slide_puzzle/puzzle/puzzle.dart';
@@ -19,16 +19,12 @@ class PuzzlePage extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => DashatarThemeBloc(
-            themes: const [
-              BlueDashatarTheme(),
-              GreenDashatarTheme(),
-              YellowDashatarTheme()
-            ],
+          create: (_) => JamThemeBloc(
+            themes: const [BlueJamTheme(), GreenJamTheme(), YellowJamTheme()],
           ),
         ),
         BlocProvider(
-          create: (_) => DashatarPuzzleBloc(
+          create: (_) => JamPuzzleBloc(
             secondsToBegin: 3,
             ticker: const Ticker(),
             gameTicker: const Ticker(),
@@ -52,7 +48,7 @@ class PuzzleView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.select((DashatarThemeBloc bloc) => bloc.state.theme);
+    final theme = context.select((JamThemeBloc bloc) => bloc.state.theme);
 
     return Scaffold(
       body: AnimatedContainer(
@@ -81,7 +77,7 @@ class _Puzzle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.select((DashatarThemeBloc bloc) => bloc.state.theme);
+    final theme = context.select((JamThemeBloc bloc) => bloc.state.theme);
     final state = context.select((PuzzleBloc bloc) => bloc.state);
 
     return LayoutBuilder(
@@ -175,7 +171,7 @@ class PuzzleLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.select((DashatarThemeBloc bloc) => bloc.state.theme);
+    final theme = context.select((JamThemeBloc bloc) => bloc.state.theme);
 
     return AppFlutterLogo(
       key: puzzleLogoKey,
@@ -193,7 +189,7 @@ class PuzzleSections extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.read<DashatarThemeBloc>().state.theme;
+    final theme = context.read<JamThemeBloc>().state.theme;
     final state = context.select((PuzzleBloc bloc) => bloc.state);
 
     return ResponsiveLayoutBuilder(
@@ -238,7 +234,7 @@ class PuzzleBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.read<DashatarThemeBloc>().state.theme;
+    final theme = context.read<JamThemeBloc>().state.theme;
     final state = context.select((PuzzleBloc bloc) => bloc.state);
 
     final size = state.puzzle.getDimension();
@@ -276,7 +272,7 @@ class _PuzzleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.read<DashatarThemeBloc>().state.theme;
+    final theme = context.read<JamThemeBloc>().state.theme;
     final state = context.select((PuzzleBloc bloc) => bloc.state);
 
     return tile.isWhitespace
@@ -297,7 +293,7 @@ class _PuzzleIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.read<DashatarThemeBloc>().state.theme;
+    final theme = context.read<JamThemeBloc>().state.theme;
     final state = context.select((PuzzleBloc bloc) => bloc.state);
 
     return theme.layoutDelegate.iconBuilder(index, state);

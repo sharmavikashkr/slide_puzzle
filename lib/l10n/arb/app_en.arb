@@ -40,41 +40,41 @@
     "@puzzleCompleted": {
         "description": "Shown as the success state when the puzzle is completed"
     },
-    "dashatarStartGame": "Start Game",
-    "@dashatarStartGame": {
+    "jamStartGame": "Start Game",
+    "@jamStartGame": {
         "description": "Shown before the puzzle is started"
     },
-    "dashatarGetReady": "Get ready...",
-    "@dashatarStartPuzzle": {
+    "jamGetReady": "Get ready...",
+    "@jamStartPuzzle": {
         "description": "Shown when the puzzle is loading"
     },
-    "dashatarRestart": "Restart",
-    "@dashatarRestart": {
+    "jamRestart": "Restart",
+    "@jamRestart": {
         "description": "Shown after the puzzle is stopped and may be restarted"
     },
-    "dashatarShare": "Share",
-    "@dashatarShare": {
+    "jamShare": "Share",
+    "@jamShare": {
         "description": "Shown after the puzzle is started"
     },
-    "dashatarStop": "Stop",
-    "@dashatarStop": {
+    "jamStop": "Stop",
+    "@jamStop": {
         "description": "Shown after the puzzle is started and may be stopped"
     },
-    "dashatarCountdownGo": "GO!",
-    "@dashatarCountdownGo": {
+    "jamCountdownGo": "GO!",
+    "@jamCountdownGo": {
         "description": "Shown when the countdown has just finished and the puzzle is about to start"
     },
-    "dashatarSuccessCompleted": "Puzzle challenge completed",
-    "@dashatarSuccessCompleted": {
-        "description": "Shown as a title in the Dashatar success state"
+    "jamSuccessCompleted": "Puzzle challenge completed",
+    "@jamSuccessCompleted": {
+        "description": "Shown as a title in the Jam success state"
     },
-    "dashatarSuccessWellDone": "Well done.\nCongrats!",
-    "@dashatarSuccessWellDone": {
-        "description": "Shown as a subtitle in the Dashatar success state"
+    "jamSuccessWellDone": "Well done.\nCongrats!",
+    "@jamSuccessWellDone": {
+        "description": "Shown as a subtitle in the Jam success state"
     },
-    "dashatarSuccessScore": "Score: {score}",
-    "@dashatarSuccessScore": {
-        "description": "Shown as a score title in the Dashatar success state",
+    "jamSuccessScore": "Score: {score}",
+    "@jamSuccessScore": {
+        "description": "Shown as a score title in the Jam success state",
         "placeholders": {
             "score": {
                 "type": "String",
@@ -82,9 +82,9 @@
             }
         }
     },
-    "dashatarSuccessNumberOfMoves": "{numberOfMoves} Moves",
-    "@dashatarSuccessNumberOfMoves": {
-        "description": "Shown as a number of moves in the Dashatar success state",
+    "jamSuccessNumberOfMoves": "{numberOfMoves} Moves",
+    "@jamSuccessNumberOfMoves": {
+        "description": "Shown as a number of moves in the Jam success state",
         "placeholders": {
             "numberOfMoves": {
                 "type": "String",
@@ -124,9 +124,9 @@
             }
         }
     },
-    "dashatarPuzzleDurationLabelText": "{hours} hours {minutes} minutes {seconds} seconds",
-    "@dashatarPuzzleDurationLabelText": {
-        "description": "Semantic label for the Dashatar timer",
+    "jamPuzzleDurationLabelText": "{hours} hours {minutes} minutes {seconds} seconds",
+    "@jamPuzzleDurationLabelText": {
+        "description": "Semantic label for the Jam timer",
         "placeholders": {
             "hours": {
                 "type": "String",
@@ -142,28 +142,28 @@
             }
         }
     },
-    "dashatarBlueDashLabelText": "Dumbbell Dash",
-    "@dashatarBlueDashLabelText": {
+    "jamBlueDashLabelText": "Dumbbell Dash",
+    "@jamBlueDashLabelText": {
         "description": "Semantic label for the blue Dash"
     },
-    "dashatarGreenDashLabelText": "Skateboard Dash",
-    "@dashatarGreenDashLabelText": {
+    "jamGreenDashLabelText": "Skateboard Dash",
+    "@jamGreenDashLabelText": {
         "description": "Semantic label for the green Dash"
     },
-    "dashatarYellowDashLabelText": "Sandwich Dash",
-    "@dashatarYellowDashLabelText": {
+    "jamYellowDashLabelText": "Sandwich Dash",
+    "@jamYellowDashLabelText": {
         "description": "Semantic label for the yellow Dash"
     },
-    "dashatarSuccessShareYourScoreTitle": "Share your score!",
-    "@dashatarSuccessShareYourScoreTitle": {
-        "description": "Shown as a share title in the Dashatar success state"
+    "jamSuccessShareYourScoreTitle": "Share your score!",
+    "@jamSuccessShareYourScoreTitle": {
+        "description": "Shown as a share title in the Jam success state"
     },
-    "dashatarSuccessShareYourScoreMessage": "Share this puzzle to challenge your friends and be sure to check out the Flutter Puzzle Hack.",
-    "@dashatarSuccessShareYourScoreMessage": {
-        "description": "Shown as a share message in the Dashatar success state"
+    "jamSuccessShareYourScoreMessage": "Share this puzzle to challenge your friends and be sure to check out the Flutter Puzzle Hack.",
+    "@jamSuccessShareYourScoreMessage": {
+        "description": "Shown as a share message in the Jam success state"
     },
-    "dashatarSuccessShareText": "Just solved the #FlutterPuzzleHack! Check it out ↓",
-    "@dashatarSuccessShareText": {
-        "description": "The text to share for this Flutter Puzzle challenge, shown in the Dashatar success state"
+    "jamSuccessShareText": "Just solved the #FlutterPuzzleHack! Check it out ↓",
+    "@jamSuccessShareText": {
+        "description": "The text to share for this Flutter Puzzle challenge, shown in the Jam success state"
     }
 }

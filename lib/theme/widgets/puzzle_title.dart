@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:jam_slide_puzzle/dashatar/dashatar.dart';
+import 'package:jam_slide_puzzle/jam/jam.dart';
 import 'package:jam_slide_puzzle/layout/layout.dart';
 import 'package:jam_slide_puzzle/theme/theme.dart';
 import 'package:jam_slide_puzzle/typography/typography.dart';
@@ -24,7 +24,7 @@ class PuzzleTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.read<DashatarThemeBloc>().state.theme;
+    final theme = context.read<JamThemeBloc>().state.theme;
     final titleColor = color ?? theme.titleColor;
 
     return ResponsiveLayoutBuilder(

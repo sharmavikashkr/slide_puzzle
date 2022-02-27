@@ -37,8 +37,8 @@ flutter:
     - assets/audio/
     - assets/images/
     - assets/images/audio_control/
-    - assets/images/dashatar/gallery/
-    - assets/images/dashatar/success/
+    - assets/images/jam/gallery/
+    - assets/images/jam/success/
   fonts:
     - family: GoogleSans
       fonts:

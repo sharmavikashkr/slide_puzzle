@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:jam_slide_puzzle/audio_control/audio_control.dart';
+import 'package:jam_slide_puzzle/jam/jam.dart';
 import 'package:jam_slide_puzzle/layout/layout.dart';
 import 'package:jam_slide_puzzle/theme/theme.dart';
-
-import '../../dashatar/dashatar.dart';
 
 /// {@template audio_control}
 /// Displays and allows to update the current audio status of the puzzle.
@@ -15,7 +14,7 @@ class AudioControl extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.read<DashatarThemeBloc>().state.theme;
+    final theme = context.read<JamThemeBloc>().state.theme;
     final audioMuted =
         context.select((AudioControlBloc bloc) => bloc.state.muted);
     final audioAsset =

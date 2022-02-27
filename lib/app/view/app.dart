@@ -34,10 +34,10 @@ class _AppState extends State<App> {
   static final audioControlAssets = [
     'assets/images/audio_control/simple_on.png',
     'assets/images/audio_control/simple_off.png',
-    'assets/images/audio_control/dashatar_on.png',
-    'assets/images/audio_control/green_dashatar_off.png',
-    'assets/images/audio_control/blue_dashatar_off.png',
-    'assets/images/audio_control/yellow_dashatar_off.png',
+    'assets/images/audio_control/jam_on.png',
+    'assets/images/audio_control/green_jam_off.png',
+    'assets/images/audio_control/blue_jam_off.png',
+    'assets/images/audio_control/yellow_jam_off.png',
   ];
 
   static final audioAssets = [
@@ -61,27 +61,27 @@ class _AppState extends State<App> {
 
     _timer = Timer(const Duration(milliseconds: 20), () {
       precacheImage(
-        Image.asset('assets/images/dashatar/gallery/green.png').image,
+        Image.asset('assets/images/jam/gallery/green.png').image,
         context,
       );
       precacheImage(
-        Image.asset('assets/images/dashatar/success/green.png').image,
+        Image.asset('assets/images/jam/success/green.png').image,
         context,
       );
       precacheImage(
-        Image.asset('assets/images/dashatar/gallery/blue.png').image,
+        Image.asset('assets/images/jam/gallery/blue.png').image,
         context,
       );
       precacheImage(
-        Image.asset('assets/images/dashatar/success/blue.png').image,
+        Image.asset('assets/images/jam/success/blue.png').image,
         context,
       );
       precacheImage(
-        Image.asset('assets/images/dashatar/gallery/yellow.png').image,
+        Image.asset('assets/images/jam/gallery/yellow.png').image,
         context,
       );
       precacheImage(
-        Image.asset('assets/images/dashatar/success/yellow.png').image,
+        Image.asset('assets/images/jam/success/yellow.png').image,
         context,
       );
       precacheImage(
