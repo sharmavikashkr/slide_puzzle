@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
-import 'package:very_good_slide_puzzle/layout/layout.dart';
-import 'package:very_good_slide_puzzle/models/models.dart';
-import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
-
-import '../../colors/colors.dart';
-import '../widgets/dashatar_puzzle_icon.dart';
-import '../widgets/dashatar_share_dialog_button.dart';
+import 'package:jam_slide_puzzle/dashatar/dashatar.dart';
+import 'package:jam_slide_puzzle/dashatar/widgets/dashatar_puzzle_icon.dart';
+import 'package:jam_slide_puzzle/dashatar/widgets/dashatar_share_dialog_button.dart';
+import 'package:jam_slide_puzzle/layout/layout.dart';
+import 'package:jam_slide_puzzle/models/models.dart';
+import 'package:jam_slide_puzzle/puzzle/puzzle.dart';
 
 /// {@template dashatar_puzzle_layout_delegate}
 /// A delegate for computing the layout of the puzzle UI

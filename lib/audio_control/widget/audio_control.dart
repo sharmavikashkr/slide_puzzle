@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:very_good_slide_puzzle/audio_control/audio_control.dart';
-import 'package:very_good_slide_puzzle/layout/layout.dart';
-import 'package:very_good_slide_puzzle/theme/theme.dart';
+import 'package:jam_slide_puzzle/audio_control/audio_control.dart';
+import 'package:jam_slide_puzzle/layout/layout.dart';
+import 'package:jam_slide_puzzle/theme/theme.dart';
 
 import '../../dashatar/dashatar.dart';
 

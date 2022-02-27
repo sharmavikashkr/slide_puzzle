@@ -5,7 +5,7 @@ import 'dart:math';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:very_good_slide_puzzle/models/models.dart';
+import 'package:jam_slide_puzzle/models/models.dart';
 
 part 'puzzle_event.dart';
 part 'puzzle_state.dart';
@@ -28,10 +28,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
     final puzzle = _generatePuzzle(_size);
     final icons = _generateIcons(_size);
     emit(
-      PuzzleState(
-        puzzle: puzzle.sort(),
-        icons: icons
-      ),
+      PuzzleState(puzzle: puzzle.sort(), icons: icons),
     );
   }
 

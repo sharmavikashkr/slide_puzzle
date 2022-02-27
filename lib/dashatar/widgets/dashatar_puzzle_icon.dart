@@ -1,12 +1,6 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:very_good_slide_puzzle/layout/layout.dart';
-
-import '../../puzzle/bloc/puzzle_bloc.dart';
-import '../bloc/dashatar_puzzle_bloc.dart';
-import '../bloc/dashatar_theme_bloc.dart';
+import 'package:jam_slide_puzzle/layout/layout.dart';
+import 'package:jam_slide_puzzle/puzzle/bloc/puzzle_bloc.dart';
 
 abstract class _IconSize {
   static double small = 30;
@@ -44,11 +38,10 @@ class DashatarPuzzleIcon extends StatefulWidget {
   final PuzzleState state;
 
   @override
-  State<DashatarPuzzleIcon> createState() => DashatarPuzzleIconState();
+  State<DashatarPuzzleIcon> createState() => _DashatarPuzzleIconState();
 }
 
-@visibleForTesting
-class DashatarPuzzleIconState extends State<DashatarPuzzleIcon> {
+class _DashatarPuzzleIconState extends State<DashatarPuzzleIcon> {
   @override
   void initState() {
     super.initState();
@@ -69,7 +62,7 @@ class DashatarPuzzleIconState extends State<DashatarPuzzleIcon> {
         widget.index / (size - 1),
       ),
       duration: const Duration(milliseconds: 800),
-      curve: Curves.easeInExpo,
+      curve: Curves.easeInOut,
       child: ResponsiveLayoutBuilder(
         small: (_, child) => SizedBox(
           key: Key('dashatar_puzzle_icon_small_${widget.index}'),

@@ -3,14 +3,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jam_slide_puzzle/audio_control/audio_control.dart';
+import 'package:jam_slide_puzzle/dashatar/dashatar.dart';
+import 'package:jam_slide_puzzle/helpers/helpers.dart';
+import 'package:jam_slide_puzzle/l10n/l10n.dart';
+import 'package:jam_slide_puzzle/puzzle/puzzle.dart';
+import 'package:jam_slide_puzzle/theme/theme.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:very_good_slide_puzzle/audio_control/audio_control.dart';
-import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
-import 'package:very_good_slide_puzzle/helpers/helpers.dart';
-import 'package:very_good_slide_puzzle/l10n/l10n.dart';
-import 'package:very_good_slide_puzzle/theme/theme.dart';
-
-import '../../puzzle/puzzle.dart';
 
 /// {@template dashatar_puzzle_action_button}
 /// Displays the action button to start or shuffle the puzzle

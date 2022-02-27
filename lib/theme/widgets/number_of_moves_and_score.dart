@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:very_good_slide_puzzle/l10n/l10n.dart';
-import 'package:very_good_slide_puzzle/layout/layout.dart';
-import 'package:very_good_slide_puzzle/theme/theme.dart';
-import 'package:very_good_slide_puzzle/typography/typography.dart';
-
-import '../../dashatar/dashatar.dart';
+import 'package:jam_slide_puzzle/dashatar/dashatar.dart';
+import 'package:jam_slide_puzzle/l10n/l10n.dart';
+import 'package:jam_slide_puzzle/layout/layout.dart';
+import 'package:jam_slide_puzzle/theme/theme.dart';
+import 'package:jam_slide_puzzle/typography/typography.dart';
 
 /// {@template number_of_moves_and_tiles_left}
 /// Displays how many moves have been made on the current puzzle
 /// and how many puzzle tiles are not in their correct position.
 /// {@endtemplate}
-class NumberOfMovesAndTilesLeft extends StatelessWidget {
+class NumberOfMovesAndScore extends StatelessWidget {
   /// {@macro number_of_moves_and_tiles_left}
-  const NumberOfMovesAndTilesLeft({
+  const NumberOfMovesAndScore({
     Key? key,
     required this.numberOfMoves,
     required this.score,
@@ -56,13 +55,13 @@ class NumberOfMovesAndTilesLeft extends StatelessWidget {
           ),
           child: ExcludeSemantics(
             child: Row(
-              key: const Key('number_of_moves_and_tiles_left'),
+              key: const Key('number_of_moves_and_score'),
               mainAxisAlignment: mainAxisAlignment,
               crossAxisAlignment: CrossAxisAlignment.baseline,
               textBaseline: TextBaseline.alphabetic,
               children: [
                 AnimatedDefaultTextStyle(
-                  key: const Key('number_of_moves_and_tiles_left_moves'),
+                  key: const Key('number_of_moves'),
                   style: PuzzleTextStyle.headline4.copyWith(
                     color: textColor,
                   ),
@@ -84,7 +83,7 @@ class NumberOfMovesAndTilesLeft extends StatelessWidget {
                   child: Text(' ${l10n.score}'),
                 ),
                 AnimatedDefaultTextStyle(
-                  key: const Key('number_of_moves_and_tiles_left_tiles_left'),
+                  key: const Key('score'),
                   style: PuzzleTextStyle.headline4.copyWith(
                     color: textColor,
                   ),

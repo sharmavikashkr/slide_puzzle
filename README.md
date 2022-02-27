@@ -8,9 +8,9 @@
 
 A slide puzzle built for [Flutter Challenge](https://flutterhack.devpost.com/).
 
-*Built by [Very Good Ventures][very_good_ventures_link] in partnership with Google.*
+_Built by [Very Good Ventures][very_good_ventures_link] in partnership with Google._
 
-*Created using [Very Good CLI][very_good_cli_link].*
+_Created using [Very Good CLI][very_good_cli_link]._
 
 ---
 
@@ -81,7 +81,7 @@ This project relies on [flutter_localizations][flutter_localizations_link] and f
 3. Use the new string
 
 ```dart
-import 'package:very_good_slide_puzzle/l10n/l10n.dart';
+import 'package:jam_slide_puzzle/l10n/l10n.dart';
 
 @override
 Widget build(BuildContext context) {

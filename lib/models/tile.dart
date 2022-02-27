@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:very_good_slide_puzzle/models/models.dart';
+import 'package:jam_slide_puzzle/models/models.dart';
 
 /// {@template tile}
 /// Model for a puzzle tile.

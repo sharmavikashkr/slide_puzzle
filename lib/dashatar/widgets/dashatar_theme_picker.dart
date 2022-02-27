@@ -2,16 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:jam_slide_puzzle/audio_control/audio_control.dart';
+import 'package:jam_slide_puzzle/colors/colors.dart';
+import 'package:jam_slide_puzzle/dashatar/dashatar.dart';
+import 'package:jam_slide_puzzle/helpers/helpers.dart';
+import 'package:jam_slide_puzzle/l10n/l10n.dart';
+import 'package:jam_slide_puzzle/layout/layout.dart';
 import 'package:just_audio/just_audio.dart';
-import 'package:very_good_slide_puzzle/audio_control/audio_control.dart';
-import 'package:very_good_slide_puzzle/colors/colors.dart';
-import 'package:very_good_slide_puzzle/dashatar/dashatar.dart';
-import 'package:very_good_slide_puzzle/helpers/helpers.dart';
-import 'package:very_good_slide_puzzle/l10n/l10n.dart';
-import 'package:very_good_slide_puzzle/layout/layout.dart';
 
-import '../../puzzle/puzzle.dart';
-import '../../theme/widgets/puzzle_subtitle.dart';
 
 /// {@template dashatar_theme_picker}
 /// Displays the Dashatar theme picker to choose between
@@ -186,14 +184,15 @@ class _DashatarThemePickerState extends State<DashatarThemePicker> {
                           child: GestureDetector(
                             key: Key('dashatar_theme_picker_$index'),
                             onTap: () async {
-                                    if (isActiveLevel) {
-                                      return;
-                                    }
+                              if (isActiveLevel) {
+                                return;
+                              }
 
-                                    // Update the current Dashatar theme.
-                                    context.read<DashatarPuzzleBloc>().add(
-                                        DashatarLevelChanged(level: level));
-                                  },
+                              // Update the current Dashatar theme.
+                              context
+                                  .read<DashatarPuzzleBloc>()
+                                  .add(DashatarLevelChanged(level: level));
+                            },
                             child: AnimatedContainer(
                               width: size,
                               height: size,
