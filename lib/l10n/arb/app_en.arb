@@ -64,7 +64,7 @@
     "@jamCountdownGo": {
         "description": "Shown when the countdown has just finished and the puzzle is about to start"
     },
-    "jamSuccessCompleted": "Puzzle challenge completed",
+    "jamSuccessCompleted": "Puzzle challenge new score",
     "@jamSuccessCompleted": {
         "description": "Shown as a title in the Jam success state"
     },

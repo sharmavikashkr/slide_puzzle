@@ -31,7 +31,7 @@ class NumberOfMovesAndScore extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.read<JamThemeBloc>().state.theme;
+    final theme = context.select((JamThemeBloc bloc) => bloc.state.theme);
     final l10n = context.l10n;
     final textColor = color ?? theme.defaultColor;
 

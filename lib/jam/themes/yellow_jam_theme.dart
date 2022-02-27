@@ -30,9 +30,6 @@ class YellowJamTheme extends JamTheme {
   Color get countdownColor => PuzzleColors.yellow50;
 
   @override
-  String get themeAsset => 'assets/images/jam/gallery/yellow.png';
-
-  @override
   String get successThemeAsset => 'assets/images/jam/success/yellow.png';
 
   @override

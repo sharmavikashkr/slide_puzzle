@@ -61,23 +61,11 @@ class _AppState extends State<App> {
 
     _timer = Timer(const Duration(milliseconds: 20), () {
       precacheImage(
-        Image.asset('assets/images/jam/gallery/green.png').image,
-        context,
-      );
-      precacheImage(
         Image.asset('assets/images/jam/success/green.png').image,
         context,
       );
       precacheImage(
-        Image.asset('assets/images/jam/gallery/blue.png').image,
-        context,
-      );
-      precacheImage(
         Image.asset('assets/images/jam/success/blue.png').image,
-        context,
-      );
-      precacheImage(
-        Image.asset('assets/images/jam/gallery/yellow.png').image,
         context,
       );
       precacheImage(

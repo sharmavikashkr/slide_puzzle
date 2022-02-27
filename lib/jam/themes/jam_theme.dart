@@ -50,11 +50,6 @@ abstract class JamTheme extends PuzzleTheme {
   /// The text color of the countdown timer.
   Color get countdownColor;
 
-  /// The path to the image asset of this theme.
-  ///
-  /// This asset is shown in the Jam theme picker.
-  String get themeAsset;
-
   /// The path to the success image asset of this theme.
   ///
   /// This asset is shown in the success state of the Jam puzzle.
@@ -82,7 +77,6 @@ abstract class JamTheme extends PuzzleTheme {
         audioControlOffAsset,
         layoutDelegate,
         countdownColor,
-        themeAsset,
         successThemeAsset,
         audioAsset
       ];
