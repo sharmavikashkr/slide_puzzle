@@ -46,14 +46,23 @@ class JamPuzzleTile extends StatefulWidget {
 
 class _JamPuzzleTileState extends State<JamPuzzleTile> {
   AudioPlayer? _audioPlayer;
+  late final Timer _timer;
 
   @override
   void initState() {
     super.initState();
+
+    // Delay the initialization of the audio player for performance reasons,
+    // to avoid dropping frames when the theme is changed.
+    _timer = Timer(const Duration(seconds: 1), () {
+      _audioPlayer = widget._audioPlayerFactory()
+        ..setAsset('assets/audio/tile_move.mp3');
+    });
   }
 
   @override
   void dispose() {
+    _timer.cancel();
     _audioPlayer?.dispose();
     super.dispose();
   }

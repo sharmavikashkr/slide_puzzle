@@ -4,4 +4,5 @@ export 'app_flutter_logo.dart';
 export 'number_of_moves_and_score.dart';
 export 'puzzle_button.dart';
 export 'puzzle_name.dart';
+export 'puzzle_subtitle.dart';
 export 'puzzle_title.dart';

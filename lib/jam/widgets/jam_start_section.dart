@@ -49,7 +49,7 @@ class JamStartSection extends StatelessWidget {
           large: 32,
         ),
         NumberOfMovesAndScore(
-          key: numberOfMovesAndTilesLeftKey,
+          key: numberOfMovesAndScore,
           numberOfMoves: state.numberOfMoves,
           score: state.score,
         ),

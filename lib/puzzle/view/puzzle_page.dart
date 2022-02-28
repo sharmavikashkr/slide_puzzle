@@ -31,13 +31,13 @@ class PuzzlePage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Just Another Monday",
+                'Just Another Monday',
                 style: PuzzleTextStyle.headline2.copyWith(
                   color: PuzzleColors.white,
                 ),
               ),
               Text(
-                "A slide puzzle for coders",
+                'A slide puzzle for coders',
                 style: PuzzleTextStyle.body.copyWith(
                   color: PuzzleColors.white,
                 ),
@@ -389,12 +389,12 @@ final puzzleTitleKey = GlobalKey(debugLabel: 'puzzle_title');
 /// Used to animate the transition of [PuzzleTitle] when changing a theme.
 final puzzleSubTitleKey = GlobalKey(debugLabel: 'puzzle_subtitle');
 
-/// The global key of [NumberOfMovesAndTilesLeft].
+/// The global key of [NumberOfMovesAndScore].
 ///
-/// Used to animate the transition of [NumberOfMovesAndTilesLeft]
+/// Used to animate the transition of [NumberOfMovesAndScore]
 /// when changing a theme.
-final numberOfMovesAndTilesLeftKey =
-    GlobalKey(debugLabel: 'number_of_moves_and_tiles_left');
+final numberOfMovesAndScore =
+    GlobalKey(debugLabel: 'number_of_moves_and_score');
 
 /// The global key of [AudioControl].
 ///
