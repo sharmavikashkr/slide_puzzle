@@ -1,4 +1,6 @@
-# Slide Puzzle
+# A Slide Puzzle for coders
+###### Just Another Monday
+
 
 ![Photo Booth Header][logo]
 
@@ -8,9 +10,7 @@
 
 A slide puzzle built for [Flutter Challenge](https://flutterhack.devpost.com/).
 
-_Built by [Very Good Ventures][very_good_ventures_link] in partnership with Google._
-
-_Created using [Very Good CLI][very_good_cli_link]._
+-Built by [Vikash Kumar][vikash_kumar_link]
 
 ---
 
@@ -151,5 +151,5 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_cli_link]: https://github.com/VeryGoodOpenSource/very_good_cli
-[very_good_ventures_link]: https://verygood.ventures/
+[vikash_kumar_link]: https://github.com/sharmavikashkr
 [logo]: art/header.png

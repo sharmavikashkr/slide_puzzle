@@ -191,6 +191,9 @@ class _JamThemePickerState extends State<JamThemePicker> {
                               context
                                   .read<JamPuzzleBloc>()
                                   .add(JamLevelChanged(level: level));
+                              await _audioPlayer
+                                  .setAsset(activeTheme.audioAsset);
+                              unawaited(_audioPlayer.play());
                             },
                             child: AnimatedContainer(
                               width: size,

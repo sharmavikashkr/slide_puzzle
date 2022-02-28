@@ -12,6 +12,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:http/http.dart' as http;
+import 'package:jam_slide_puzzle/colors/colors.dart';
 import 'package:jam_slide_puzzle/helpers/helpers.dart';
 import 'package:jam_slide_puzzle/l10n/l10n.dart';
 import 'package:jam_slide_puzzle/puzzle/puzzle.dart';

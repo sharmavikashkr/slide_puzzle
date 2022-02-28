@@ -21,28 +21,30 @@ class PuzzlePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
-      animationDuration: const Duration(seconds: 2),
-      splash: Container(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        color: PuzzleColors.greenPrimary,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Just Another Monday',
-                style: PuzzleTextStyle.headline2.copyWith(
-                  color: PuzzleColors.white,
+      animationDuration: Duration.zero,
+      splash: SizedBox.expand(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          color: PuzzleColors.greenPrimary,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Just Another Monday',
+                  style: PuzzleTextStyle.headline3.copyWith(
+                    color: PuzzleColors.white,
+                  ),
                 ),
-              ),
-              Text(
-                'A slide puzzle for coders',
-                style: PuzzleTextStyle.body.copyWith(
-                  color: PuzzleColors.white,
+                Text(
+                  'A slide puzzle for coders',
+                  style: PuzzleTextStyle.body.copyWith(
+                    color: PuzzleColors.white,
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
@@ -152,7 +154,7 @@ class PuzzleHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 96,
+      height: 70,
       child: ResponsiveLayoutBuilder(
         small: (context, child) => Stack(
           children: [

@@ -39,7 +39,7 @@ class PuzzleButton extends StatelessWidget {
     final buttonBackgroundColor = backgroundColor ?? theme.buttonColor;
 
     return SizedBox(
-      width: 145,
+      width: 120,
       height: 44,
       child: AnimatedTextButton(
         duration: PuzzleThemeAnimationDuration.textStyle,
