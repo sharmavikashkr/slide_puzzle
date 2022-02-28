@@ -16,9 +16,9 @@ class JamScore extends StatelessWidget {
   /// {@macro jam_score}
   const JamScore({Key? key}) : super(key: key);
 
-  static const _smallImageOffset = Offset(124, 36);
-  static const _mediumImageOffset = Offset(215, -47);
-  static const _largeImageOffset = Offset(215, -47);
+  static const _smallImageOffset = Offset(100, 0);
+  static const _mediumImageOffset = Offset(175, -47);
+  static const _largeImageOffset = Offset(175, -47);
 
   @override
   Widget build(BuildContext context) {

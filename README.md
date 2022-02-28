@@ -24,6 +24,16 @@ $ flutter run -d chrome
 
 ---
 
+## Build APK 🚀
+
+To build the APK for Android, run:
+
+```sh
+$ flutter build apk --no-tree-shake-icons
+```
+
+---
+
 ## Running Tests 🧪
 
 To run all unit and widget tests use the following command:
