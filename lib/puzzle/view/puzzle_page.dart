@@ -289,7 +289,12 @@ class PuzzleBoard extends StatelessWidget {
             )
             .toList(),
         state.icons
-            .map((icon) => _PuzzleIcon(index: state.icons.indexOf(icon)))
+            .map(
+              (icon) => _PuzzleIcon(
+                key: Key('puzzle_tile_${icon.toString()}'),
+                index: state.icons.indexOf(icon),
+              ),
+            )
             .toList(),
       ),
     );
