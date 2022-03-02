@@ -22,29 +22,25 @@ class PuzzlePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedSplashScreen(
       animationDuration: Duration.zero,
-      splash: SizedBox.expand(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          color: PuzzleColors.greenPrimary,
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Just Another Monday',
-                  style: PuzzleTextStyle.headline3.copyWith(
-                    color: PuzzleColors.white,
-                  ),
+      splash: Scaffold(
+        backgroundColor: PuzzleColors.greenPrimary,
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Just Another Monday',
+                style: PuzzleTextStyle.headline3.copyWith(
+                  color: PuzzleColors.white,
                 ),
-                Text(
-                  'A slide puzzle for coders',
-                  style: PuzzleTextStyle.body.copyWith(
-                    color: PuzzleColors.white,
-                  ),
+              ),
+              Text(
+                'A slide puzzle for coders',
+                style: PuzzleTextStyle.body.copyWith(
+                  color: PuzzleColors.white,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -88,21 +84,24 @@ class PuzzleView extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = context.select((JamThemeBloc bloc) => bloc.state.theme);
 
-    return Scaffold(
-      body: AnimatedContainer(
-        duration: PuzzleThemeAnimationDuration.backgroundColorChange,
-        decoration: BoxDecoration(color: theme.backgroundColor),
-        child: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => PuzzleBloc(4)
-                ..add(
-                  const PuzzleInitialized(),
-                ),
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: AnimatedContainer(
+          duration: PuzzleThemeAnimationDuration.backgroundColorChange,
+          decoration: BoxDecoration(color: theme.backgroundColor),
+          child: MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => PuzzleBloc(4)
+                  ..add(
+                    const PuzzleInitialized(),
+                  ),
+              ),
+            ],
+            child: const _Puzzle(
+              key: Key('puzzle_view_puzzle'),
             ),
-          ],
-          child: const _Puzzle(
-            key: Key('puzzle_view_puzzle'),
           ),
         ),
       ),
