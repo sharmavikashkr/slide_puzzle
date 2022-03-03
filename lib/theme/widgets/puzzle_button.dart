@@ -40,7 +40,7 @@ class PuzzleButton extends StatelessWidget {
           ),
         ).copyWith(
           backgroundColor: MaterialStateProperty.all(theme.defaultColor),
-          foregroundColor: MaterialStateProperty.all(PuzzleColors.black),
+          foregroundColor: MaterialStateProperty.all(PuzzleColors.black), 
         ),
         onPressed: onPressed,
         child: child,
