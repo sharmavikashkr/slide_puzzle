@@ -89,7 +89,6 @@ class JamScore extends StatelessWidget {
                     children: [
                       const AppFlutterLogo(
                         height: 18,
-                        isColored: false,
                       ),
                       const ResponsiveGap(
                         small: 24,
