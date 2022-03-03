@@ -53,8 +53,8 @@ class _JamThemePickerState extends State<JamThemePicker> {
 
   @override
   Widget build(BuildContext context) {
-    final themeState = context.watch<JamThemeBloc>().state;
-    final puzzleState = context.watch<JamPuzzleBloc>().state;
+    final themeState = context.select((JamThemeBloc bloc) => bloc.state);
+    final puzzleState = context.select((JamPuzzleBloc bloc) => bloc.state);
     final activeTheme = themeState.theme;
 
     return Column(
@@ -121,7 +121,16 @@ class _JamThemePickerState extends State<JamThemePicker> {
                               curve: Curves.easeInOut,
                               duration: const Duration(milliseconds: 350),
                               child: Card(
-                                color: theme.countdownColor,
+                                elevation: 20,
+                                color: theme.defaultColor,
+                                child: Center(
+                                  child: Text(
+                                    theme.name,
+                                    style: const TextStyle(
+                                      color: PuzzleColors.black,
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
                           ),
@@ -170,11 +179,9 @@ class _JamThemePickerState extends State<JamThemePicker> {
                       final padding =
                           index > 0 ? (isSmallSize ? 4.0 : 8.0) : 0.0;
                       final size = isActiveLevel ? activeSize : inactiveSize;
-                      final fontWeight =
-                          isActiveLevel ? FontWeight.bold : FontWeight.normal;
                       final color = isActiveLevel
-                          ? activeTheme.buttonColor
-                          : activeTheme.pressedColor;
+                          ? activeTheme.defaultColor
+                          : PuzzleColors.grey3;
 
                       return Padding(
                         padding: EdgeInsets.only(left: padding),
@@ -201,13 +208,13 @@ class _JamThemePickerState extends State<JamThemePicker> {
                               curve: Curves.easeInOut,
                               duration: const Duration(milliseconds: 350),
                               child: Card(
+                                elevation: 20,
                                 color: color,
                                 child: Center(
                                   child: Text(
                                     level.name,
-                                    style: TextStyle(
-                                      color: activeTheme.titleColor,
-                                      fontWeight: fontWeight,
+                                    style: const TextStyle(
+                                      color: PuzzleColors.black,
                                     ),
                                   ),
                                 ),

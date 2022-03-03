@@ -82,7 +82,6 @@ class _JamPuzzleActionButtonState extends State<JamPuzzleActionButton> {
                             );
                         unawaited(_audioPlayer.replay());
                       },
-            textColor: isLoading ? theme.defaultColor : null,
             child: Text(text),
           ),
         ),

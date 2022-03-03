@@ -8,6 +8,7 @@ environment:
   flutter: 2.8.0
 
 dependencies:
+  animated_splash_screen: ^1.2.0
   bloc: ^8.0.1
   equatable: ^2.0.3
   fake_async: ^1.2.0
@@ -20,9 +21,9 @@ dependencies:
   google_fonts: ^2.1.0
   intl: ^0.17.0
   just_audio: ^0.9.18
+  spring: ^2.0.2
   universal_platform: ^1.0.0+1
   url_launcher: ^6.0.17
-  animated_splash_screen: ^1.2.0
 
 dev_dependencies:
   bloc_test: ^9.0.1

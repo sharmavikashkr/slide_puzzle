@@ -12,13 +12,10 @@ abstract class JamTheme extends PuzzleTheme {
   const JamTheme() : super();
 
   @override
-  String get name => 'Just Another Monday';
+  String get puzzleName => 'Just Another Monday';
 
   @override
   String get audioControlOnAsset => 'assets/images/audio_control/jam_on.png';
-
-  @override
-  bool get hasTimer => true;
 
   @override
   Color get nameColor => PuzzleColors.white;
@@ -27,25 +24,7 @@ abstract class JamTheme extends PuzzleTheme {
   Color get titleColor => PuzzleColors.white;
 
   @override
-  Color get hoverColor => PuzzleColors.black2;
-
-  @override
-  Color get pressedColor => PuzzleColors.white2;
-
-  @override
-  bool get isLogoColored => false;
-
-  @override
-  Color get menuActiveColor => PuzzleColors.white;
-
-  @override
-  Color get menuUnderlineColor => PuzzleColors.white;
-
-  @override
   PuzzleLayoutDelegate get layoutDelegate => const JamPuzzleLayoutDelegate();
-
-  /// The semantics label of this theme.
-  String semanticsLabel(BuildContext context);
 
   /// The text color of the countdown timer.
   Color get countdownColor;
@@ -61,18 +40,9 @@ abstract class JamTheme extends PuzzleTheme {
   @override
   List<Object?> get props => [
         name,
-        hasTimer,
         nameColor,
         titleColor,
-        backgroundColor,
         defaultColor,
-        buttonColor,
-        hoverColor,
-        pressedColor,
-        isLogoColored,
-        menuActiveColor,
-        menuUnderlineColor,
-        menuInactiveColor,
         audioControlOnAsset,
         audioControlOffAsset,
         layoutDelegate,

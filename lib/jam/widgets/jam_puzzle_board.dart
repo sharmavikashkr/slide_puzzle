@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jam_slide_puzzle/layout/layout.dart';
+import 'package:spring/spring.dart';
 
 abstract class _BoardSize {
   static double small = 312;

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jam_slide_puzzle/colors/colors.dart';
 import 'package:jam_slide_puzzle/jam/jam.dart';
-import 'package:jam_slide_puzzle/l10n/l10n.dart';
 
 /// {@template blue_jam_theme}
 /// The blue jam puzzle theme.
@@ -11,20 +10,16 @@ class BlueJamTheme extends JamTheme {
   const BlueJamTheme() : super();
 
   @override
-  String semanticsLabel(BuildContext context) =>
-      context.l10n.jamBlueDashLabelText;
+  String get name => 'azul';
 
   @override
-  Color get backgroundColor => PuzzleColors.bluePrimary;
+  Color get backgroundBottomLeftColor => Colors.brown;
+
+  @override
+  Color get backgroundTopRightColor => Colors.green;
 
   @override
   Color get defaultColor => PuzzleColors.blue90;
-
-  @override
-  Color get buttonColor => PuzzleColors.blue50;
-
-  @override
-  Color get menuInactiveColor => PuzzleColors.blue50;
 
   @override
   Color get countdownColor => PuzzleColors.blue50;

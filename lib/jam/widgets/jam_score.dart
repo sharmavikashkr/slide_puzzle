@@ -71,7 +71,7 @@ class JamScore extends StatelessWidget {
           child: Container(
             width: double.infinity,
             height: height,
-            color: theme.backgroundColor,
+            color: theme.defaultColor,
             child: Stack(
               children: [
                 Positioned(

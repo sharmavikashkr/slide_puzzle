@@ -89,7 +89,15 @@ class PuzzleView extends StatelessWidget {
         resizeToAvoidBottomInset: false,
         body: AnimatedContainer(
           duration: PuzzleThemeAnimationDuration.backgroundColorChange,
-          decoration: BoxDecoration(color: theme.backgroundColor),
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              theme.backgroundTopRightColor,
+              theme.backgroundBottomLeftColor,
+            ],
+          )),
           child: MultiBlocProvider(
             providers: [
               BlocProvider(
@@ -208,11 +216,8 @@ class PuzzleLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.select((JamThemeBloc bloc) => bloc.state.theme);
-
     return AppFlutterLogo(
       key: puzzleLogoKey,
-      isColored: theme.isLogoColored,
     );
   }
 }
