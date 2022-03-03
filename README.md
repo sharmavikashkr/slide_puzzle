@@ -14,6 +14,17 @@ A slide puzzle built for [Flutter Challenge](https://flutterhack.devpost.com/).
 
 ---
 
+## Description
+
+This is a 4x4 (each tile is an icon) row matching puzzle where you need to match a row with its expected icon to gain score. When a row is matched, its tiles are replaced with random icons. Catch? the puzzle keeps shuffling at regular intervals. This interval can be changed based on the 3 levels that a player can select:
+
+- _easy (60 seconds)_
+- _medium(45 seconds)_
+- _hard(30 seconds)_
+
+**Note:** This project can be built for Web, Android, iOs and Windows.
+
+
 ## Getting Started 🚀
 
 To run the project either use the launch configuration in VSCode/Android Studio or use the following command:
@@ -162,4 +173,4 @@ Update the `CFBundleLocalizations` array in the `Info.plist` at `ios/Runner/Info
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
 [very_good_cli_link]: https://github.com/VeryGoodOpenSource/very_good_cli
 [vikash_kumar_link]: https://github.com/sharmavikashkr
-[logo]: art/header.png
+[logo]: art/Header_new_theme.png.png
