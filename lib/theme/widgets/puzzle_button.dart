@@ -14,17 +14,7 @@ class PuzzleButton extends StatelessWidget {
     Key? key,
     required this.child,
     required this.onPressed,
-    this.backgroundColor,
-    this.textColor,
   }) : super(key: key);
-
-  /// The background color of this button.
-  /// Defaults to [PuzzleTheme.buttonColor].
-  final Color? backgroundColor;
-
-  /// The text color of this button.
-  /// Defaults to [PuzzleColors.white].
-  final Color? textColor;
 
   /// Called when this button is tapped.
   final VoidCallback? onPressed;
@@ -35,8 +25,6 @@ class PuzzleButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = context.read<JamThemeBloc>().state.theme;
-    final buttonTextColor = textColor ?? PuzzleColors.white;
-    final buttonBackgroundColor = backgroundColor ?? theme.buttonColor;
 
     return SizedBox(
       width: 120,
@@ -44,14 +32,15 @@ class PuzzleButton extends StatelessWidget {
       child: AnimatedTextButton(
         duration: PuzzleThemeAnimationDuration.textStyle,
         style: TextButton.styleFrom(
+          elevation: 20,
           padding: EdgeInsets.zero,
           textStyle: PuzzleTextStyle.label,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
           ),
         ).copyWith(
-          backgroundColor: MaterialStateProperty.all(buttonBackgroundColor),
-          foregroundColor: MaterialStateProperty.all(buttonTextColor),
+          backgroundColor: MaterialStateProperty.all(theme.defaultColor),
+          foregroundColor: MaterialStateProperty.all(PuzzleColors.black), 
         ),
         onPressed: onPressed,
         child: child,

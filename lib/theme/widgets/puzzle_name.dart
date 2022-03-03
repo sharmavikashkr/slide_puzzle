@@ -32,7 +32,7 @@ class PuzzleName extends StatelessWidget {
           ),
           duration: PuzzleThemeAnimationDuration.textStyle,
           child: Text(
-            theme.name,
+            theme.puzzleName,
             key: const Key('puzzle_name_theme'),
           ),
         ),
@@ -44,7 +44,7 @@ class PuzzleName extends StatelessWidget {
           ),
           duration: PuzzleThemeAnimationDuration.textStyle,
           child: Text(
-            theme.name,
+            theme.puzzleName,
             key: const Key('puzzle_name_theme'),
           ),
         ),
@@ -55,7 +55,7 @@ class PuzzleName extends StatelessWidget {
         ),
         duration: PuzzleThemeAnimationDuration.textStyle,
         child: Text(
-          theme.name,
+          theme.puzzleName,
           key: const Key('puzzle_name_theme'),
         ),
       ),

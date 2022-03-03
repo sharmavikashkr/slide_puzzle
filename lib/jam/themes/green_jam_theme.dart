@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jam_slide_puzzle/colors/colors.dart';
 import 'package:jam_slide_puzzle/jam/jam.dart';
-import 'package:jam_slide_puzzle/l10n/l10n.dart';
 
 /// {@template green_jam_theme}
 /// The green jam puzzle theme.
@@ -11,20 +10,16 @@ class GreenJamTheme extends JamTheme {
   const GreenJamTheme() : super();
 
   @override
-  String semanticsLabel(BuildContext context) =>
-      context.l10n.jamGreenDashLabelText;
+  String get name => 'verde';
 
   @override
-  Color get backgroundColor => PuzzleColors.greenPrimary;
+  Color get backgroundBottomLeftColor => Colors.deepPurple;
+
+  @override
+  Color get backgroundTopRightColor => Colors.deepOrange;
 
   @override
   Color get defaultColor => PuzzleColors.green90;
-
-  @override
-  Color get buttonColor => PuzzleColors.green50;
-
-  @override
-  Color get menuInactiveColor => PuzzleColors.green50;
 
   @override
   Color get countdownColor => PuzzleColors.green50;

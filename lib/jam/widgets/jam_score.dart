@@ -71,7 +71,7 @@ class JamScore extends StatelessWidget {
           child: Container(
             width: double.infinity,
             height: height,
-            color: theme.backgroundColor,
+            color: theme.defaultColor,
             child: Stack(
               children: [
                 Positioned(
@@ -89,7 +89,6 @@ class JamScore extends StatelessWidget {
                     children: [
                       const AppFlutterLogo(
                         height: 18,
-                        isColored: false,
                       ),
                       const ResponsiveGap(
                         small: 24,

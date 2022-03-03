@@ -112,28 +112,32 @@ class _JamPuzzleTileState extends State<JamPuzzleTile> {
           child: ResponsiveLayoutBuilder(
             key: ValueKey(Random().nextDouble()),
             small: (_, child) => SizedBox.square(
-              key: Key('jam_puzzle_tile_small_${widget.tile.value}'),
+              key: Key('jam_puzzle_tile_medium_${widget.tile.value}'),
               dimension: _TileSize.small,
-              child: child,
+              child: Card(
+                elevation: 20,
+                child: child,
+              ),
             ),
             medium: (_, child) => SizedBox.square(
               key: Key('jam_puzzle_tile_medium_${widget.tile.value}'),
               dimension: _TileSize.medium,
-              child: child,
+              child: Card(
+                elevation: 20,
+                child: child,
+              ),
             ),
             large: (_, child) => SizedBox.square(
-              key: Key('jam_puzzle_tile_large_${widget.tile.value}'),
+              key: Key('jam_puzzle_tile_medium_${widget.tile.value}'),
               dimension: _TileSize.large,
-              child: child,
+              child: Card(
+                elevation: 20,
+                child: child,
+              ),
             ),
             child: (_) => TextButton(
               style: TextButton.styleFrom(
                 primary: PuzzleColors.black,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12),
-                  ),
-                ),
                 backgroundColor: theme.defaultColor,
               ),
               onPressed: hasStarted

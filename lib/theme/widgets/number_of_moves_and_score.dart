@@ -7,6 +7,7 @@ import 'package:jam_slide_puzzle/l10n/l10n.dart';
 import 'package:jam_slide_puzzle/layout/layout.dart';
 import 'package:jam_slide_puzzle/theme/theme.dart';
 import 'package:jam_slide_puzzle/typography/typography.dart';
+import 'package:spring/spring.dart';
 
 /// {@template number_of_moves_and_tiles_left}
 /// Displays how many moves have been made on the current puzzle
@@ -56,42 +57,44 @@ class NumberOfMovesAndScore extends StatelessWidget {
             score.toString(),
           ),
           child: ExcludeSemantics(
-            child: Row(
-              key: const Key('number_of_moves_and_score'),
-              mainAxisAlignment: mainAxisAlignment,
-              crossAxisAlignment: CrossAxisAlignment.baseline,
-              textBaseline: TextBaseline.alphabetic,
-              children: [
-                AnimatedDefaultTextStyle(
-                  key: const Key('number_of_moves'),
-                  style: PuzzleTextStyle.headline4.copyWith(
-                    color: textColor,
+            child: Spring.bubbleButton(
+              child: Row(
+                key: const Key('number_of_moves_and_score'),
+                mainAxisAlignment: mainAxisAlignment,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  AnimatedDefaultTextStyle(
+                    key: const Key('number_of_moves'),
+                    style: PuzzleTextStyle.headline4.copyWith(
+                      color: textColor,
+                    ),
+                    duration: PuzzleThemeAnimationDuration.textStyle,
+                    child: Text(numberOfMoves.toString()),
                   ),
-                  duration: PuzzleThemeAnimationDuration.textStyle,
-                  child: Text(numberOfMoves.toString()),
-                ),
-                AnimatedDefaultTextStyle(
-                  style: PuzzleTextStyle.headline4.copyWith(
-                    color: textColor,
+                  AnimatedDefaultTextStyle(
+                    style: PuzzleTextStyle.headline4.copyWith(
+                      color: textColor,
+                    ),
+                    duration: PuzzleThemeAnimationDuration.textStyle,
+                    child: Text(' ${l10n.puzzleNumberOfMoves} | '),
                   ),
-                  duration: PuzzleThemeAnimationDuration.textStyle,
-                  child: Text(' ${l10n.puzzleNumberOfMoves} | '),
-                ),
-                AnimatedDefaultTextStyle(
-                  style: PuzzleTextStyle.headline4.copyWith(
-                    color: textColor,
+                  AnimatedDefaultTextStyle(
+                    style: PuzzleTextStyle.headline4.copyWith(
+                      color: textColor,
+                    ),
+                    duration: PuzzleThemeAnimationDuration.textStyle,
+                    child: Text(' ${l10n.score}'),
                   ),
-                  duration: PuzzleThemeAnimationDuration.textStyle,
-                  child: Text(' ${l10n.score}'),
-                ),
-                AnimatedDefaultTextStyle(
-                  style: PuzzleTextStyle.headline4.copyWith(
-                    color: textColor,
+                  AnimatedDefaultTextStyle(
+                    style: PuzzleTextStyle.headline4.copyWith(
+                      color: textColor,
+                    ),
+                    duration: PuzzleThemeAnimationDuration.textStyle,
+                    child: Text(score.toString()),
                   ),
-                  duration: PuzzleThemeAnimationDuration.textStyle,
-                  child: Text(score.toString()),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

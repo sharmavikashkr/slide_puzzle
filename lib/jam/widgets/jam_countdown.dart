@@ -10,6 +10,7 @@ import 'package:jam_slide_puzzle/layout/layout.dart';
 import 'package:jam_slide_puzzle/puzzle/puzzle.dart';
 import 'package:jam_slide_puzzle/typography/typography.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:spring/spring.dart';
 
 /// {@template jam_countdown}
 /// Displays the countdown before the puzzle is started.
@@ -65,25 +66,25 @@ class _JamCountdownState extends State<JamCountdown> {
           }
         },
         child: ResponsiveLayoutBuilder(
-          small: (_, __) => const SizedBox(),
-          medium: (_, __) => const SizedBox(),
-          large: (_, __) => BlocBuilder<JamPuzzleBloc, JamPuzzleState>(
-            builder: (context, state) {
-              if (!state.isCountdownRunning || state.secondsToBegin > 3) {
-                return const SizedBox();
-              }
+            small: (_, __) => const SizedBox(),
+            medium: (_, __) => const SizedBox(),
+            large: (_, __) => BlocBuilder<JamPuzzleBloc, JamPuzzleState>(
+              builder: (context, state) {
+                if (!state.isCountdownRunning || state.secondsToBegin > 3) {
+                  return const SizedBox();
+                }
 
-              if (state.secondsToBegin > 0) {
-                return JamCountdownSecondsToBegin(
-                  key: ValueKey(state.secondsToBegin),
-                  secondsToBegin: state.secondsToBegin,
-                );
-              } else {
-                return const JamCountdownGo();
-              }
-            },
+                if (state.secondsToBegin > 0) {
+                  return JamCountdownSecondsToBegin(
+                    key: ValueKey(state.secondsToBegin),
+                    secondsToBegin: state.secondsToBegin,
+                  );
+                } else {
+                  return const JamCountdownGo();
+                }
+              },
+            ),
           ),
-        ),
       ),
     );
   }
