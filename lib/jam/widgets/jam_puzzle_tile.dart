@@ -107,7 +107,7 @@ class _JamPuzzleTileState extends State<JamPuzzleTile> {
         duration: movementDuration,
         curve: Curves.easeInOut,
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(milliseconds: 600),
           transitionBuilder: __transitionBuilder,
           child: ResponsiveLayoutBuilder(
             key: ValueKey(Random().nextDouble()),

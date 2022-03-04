@@ -168,7 +168,7 @@ class _JamCountdownSecondsToBeginState extends State<JamCountdownSecondsToBegin>
           child: Text(
             widget.secondsToBegin.toString(),
             style: PuzzleTextStyle.countdownTime.copyWith(
-              color: theme.countdownColor,
+              color: theme.defaultColor,
             ),
           ),
         ),

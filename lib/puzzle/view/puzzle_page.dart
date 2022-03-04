@@ -23,7 +23,7 @@ class PuzzlePage extends StatelessWidget {
     return AnimatedSplashScreen(
       animationDuration: Duration.zero,
       splash: Scaffold(
-        backgroundColor: PuzzleColors.greenPrimary,
+        backgroundColor: PuzzleColors.black,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -68,7 +68,7 @@ class PuzzlePage extends StatelessWidget {
       pageTransitionType: PageTransitionType.bottomToTop,
       curve: Curves.easeInOut,
       splashIconSize: MediaQuery.of(context).size.width,
-      backgroundColor: PuzzleColors.greenPrimary,
+      backgroundColor: PuzzleColors.black,
     );
   }
 }
@@ -90,14 +90,15 @@ class PuzzleView extends StatelessWidget {
         body: AnimatedContainer(
           duration: PuzzleThemeAnimationDuration.backgroundColorChange,
           decoration: BoxDecoration(
-              gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              theme.backgroundTopRightColor,
-              theme.backgroundBottomLeftColor,
-            ],
-          )),
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [
+                theme.backgroundTopRightColor,
+                theme.backgroundBottomLeftColor,
+              ],
+            ),
+          ),
           child: MultiBlocProvider(
             providers: [
               BlocProvider(

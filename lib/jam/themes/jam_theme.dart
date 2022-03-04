@@ -26,9 +26,6 @@ abstract class JamTheme extends PuzzleTheme {
   @override
   PuzzleLayoutDelegate get layoutDelegate => const JamPuzzleLayoutDelegate();
 
-  /// The text color of the countdown timer.
-  Color get countdownColor;
-
   /// The path to the success image asset of this theme.
   ///
   /// This asset is shown in the success state of the Jam puzzle.
@@ -46,7 +43,6 @@ abstract class JamTheme extends PuzzleTheme {
         audioControlOnAsset,
         audioControlOffAsset,
         layoutDelegate,
-        countdownColor,
         successThemeAsset,
         audioAsset
       ];

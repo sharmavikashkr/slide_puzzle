@@ -22,9 +22,6 @@ class BlueJamTheme extends JamTheme {
   Color get defaultColor => PuzzleColors.blue90;
 
   @override
-  Color get countdownColor => PuzzleColors.blue50;
-
-  @override
   String get successThemeAsset => 'assets/images/jam/success/blue.png';
 
   @override

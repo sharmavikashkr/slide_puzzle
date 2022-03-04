@@ -22,9 +22,6 @@ class YellowJamTheme extends JamTheme {
   Color get defaultColor => PuzzleColors.yellow90;
 
   @override
-  Color get countdownColor => PuzzleColors.yellow50;
-
-  @override
   String get successThemeAsset => 'assets/images/jam/success/yellow.png';
 
   @override
