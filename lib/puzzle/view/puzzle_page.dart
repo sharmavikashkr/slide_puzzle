@@ -290,7 +290,9 @@ class PuzzleBoard extends StatelessWidget {
         state.puzzle.tiles
             .map(
               (tile) => _PuzzleTile(
-                key: Key('puzzle_tile_${tile.value.toString()}'),
+                key: Key(
+                  'puzzle_tile_${tile.value.toString()}}',
+                ),
                 tile: tile,
               ),
             )
@@ -298,7 +300,7 @@ class PuzzleBoard extends StatelessWidget {
         state.icons
             .map(
               (icon) => _PuzzleIcon(
-                key: Key('puzzle_tile_${icon.toString()}'),
+                key: Key('puzzle_icon_${icon.toString()}'),
                 index: state.icons.indexOf(icon),
               ),
             )

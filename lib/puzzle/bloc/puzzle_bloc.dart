@@ -38,12 +38,7 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
       final mutablePuzzle = Puzzle(tiles: [...state.puzzle.tiles]);
       final puzzle = mutablePuzzle.moveTiles(tappedTile, []);
       final puzzleSorted = puzzle.sort();
-      emit(
-        state.copyWith(
-          puzzle: puzzleSorted,
-          numberOfMoves: state.numberOfMoves + 1,
-        ),
-      );
+      var score = state.score;
       for (var i = 0; i < _size; i++) {
         var matched = 0;
         for (var j = 0; j < _size; j++) {
@@ -54,18 +49,19 @@ class PuzzleBloc extends Bloc<PuzzleEvent, PuzzleState> {
         if (matched == _size) {
           for (var j = 0; j < _size; j++) {
             puzzleSorted.tiles[i * _size + j].icon =
-                state.icons[Random().nextInt(_size)] as IconData;
+                state.icons[Random().nextInt(_size)];
             puzzleSorted.tiles[i * _size + j].flip = true;
           }
-          emit(
-            state.copyWith(
-              puzzle: puzzleSorted,
-              numberOfMoves: state.numberOfMoves,
-              score: state.score + 1,
-            ),
-          );
+          score++;
         }
       }
+      emit(
+        state.copyWith(
+          puzzle: puzzleSorted,
+          numberOfMoves: state.numberOfMoves + 1,
+          score: score,
+        ),
+      );
     }
   }
 

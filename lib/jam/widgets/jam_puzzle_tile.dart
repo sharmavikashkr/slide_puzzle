@@ -68,15 +68,13 @@ class _JamPuzzleTileState extends State<JamPuzzleTile> {
   }
 
   Widget __transitionBuilder(Widget widget, Animation<double> animation) {
-    if (!this.widget.tile.flip) {
-      return widget;
-    }
     final rotateAnim = Tween(begin: pi, end: 0.0).animate(animation);
     return AnimatedBuilder(
       animation: rotateAnim,
       child: widget,
       builder: (context, widget) {
-        final value = min(rotateAnim.value, pi / 2);
+        final value =
+            this.widget.tile.flip ? min(rotateAnim.value, pi / 2) : 0.0;
         return Transform(
           transform: Matrix4.rotationY(value),
           alignment: Alignment.center,
@@ -107,10 +105,10 @@ class _JamPuzzleTileState extends State<JamPuzzleTile> {
         duration: movementDuration,
         curve: Curves.easeInOut,
         child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 600),
+          duration: const Duration(milliseconds: 800),
           transitionBuilder: __transitionBuilder,
           child: ResponsiveLayoutBuilder(
-            key: ValueKey(Random().nextDouble()),
+            key: ValueKey('jam_tile_${widget.tile.value}_${widget.tile.icon}'),
             small: (_, child) => SizedBox.square(
               key: Key('jam_puzzle_tile_medium_${widget.tile.value}'),
               dimension: _TileSize.small,
