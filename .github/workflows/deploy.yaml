@@ -6,6 +6,7 @@ on:
       - "lib/**"
       - "pubspec.yaml"
       - "pubspec.lock"
+      - ".gihub/workflows/**"
     branches:
       - master
 
@@ -27,7 +28,6 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
     - name: 'Build Web'
-      uses: actions/checkout@v2
       uses: subosito/flutter-action@v2
       with:
         flutter-version: '2.10.2'
