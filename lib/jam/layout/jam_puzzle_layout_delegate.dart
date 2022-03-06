@@ -96,7 +96,11 @@ class JamPuzzleLayoutDelegate extends PuzzleLayoutDelegate {
 
   @override
   Widget boardBuilder(
-      PuzzleState state, int size, List<Widget> tiles, List<Widget> icons) {
+    PuzzleState state,
+    int size,
+    List<Widget> tiles,
+    List<Widget> icons,
+  ) {
     return Stack(
       children: [
         Positioned(
