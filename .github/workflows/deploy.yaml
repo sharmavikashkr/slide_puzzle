@@ -27,10 +27,12 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-    - name: 'Build Web'
+    - name: 'Use flutter plugin'
       uses: subosito/flutter-action@v2
       with:
         flutter-version: '2.10.2'
+    
+    - name: 'Build Web'
       run: |
         flutter pub get
         flutter build web
