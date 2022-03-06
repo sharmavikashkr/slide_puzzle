@@ -7,7 +7,7 @@ on:
       - "pubspec.yaml"
       - "pubspec.lock"
     branches:
-      - main
+      - master
 
 env:
   STORAGE_ACCOUNT: jamslidepuzzle
