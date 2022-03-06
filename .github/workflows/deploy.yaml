@@ -1,4 +1,4 @@
-name: deploy
+name: Deploy to 
 
 on:
   push:
@@ -9,31 +9,40 @@ on:
     branches:
       - main
 
+env:
+  STORAGE_ACCOUNT: jamslidepuzzle
+
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     name: deploy
+
     steps:
-      - uses: actions/checkout@v2
+    - name: 'Checkout GitHub Action'
+      uses: actions/checkout@master
 
-      - uses: subosito/flutter-action@v1.5.3
-        with:
-          flutter-version: 2.8.0
-          channel: stable
+    - name: 'Login to Azure'
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Install Dependencies
-        run: flutter packages get
-
-      - name: Build for Web
-        run: flutter build web
-
-      - name: Deploy
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_HOSTING_DEV }}"
-          projectId: slide-puzzle-dev
-          target: slide-puzzle-dev-34815
-          expires: 30d
-          channelId: live
+    - name: 'Build Web'
+      uses: actions/checkout@v2
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '2.10.2'
+      run: |
+        flutter pub get
+        flutter build web
+    
+    - name: Upload to blob storage
+      uses: azure/CLI@v1
+      with:
+        inlineScript: |
+          az storage blob upload-batch --account-name ${{ env.STORAGE_ACCOUNT }}  --auth-mode key -d '$web' -s ./build/web
+    
+    # Azure logout
+    - name: Azure logout
+      run: |
+        az logout
+      if: always()
