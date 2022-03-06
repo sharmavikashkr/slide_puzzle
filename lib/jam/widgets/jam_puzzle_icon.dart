@@ -20,7 +20,7 @@ abstract class _BoxWidth {
   static double large = 100;
 }
 
-/// {@template jam_puzzle_Icon}
+/// {@template jam_puzzle_icon}
 /// Displays the board of the puzzle in a [Stack].
 /// {@endtemplate}
 class JamPuzzleIcon extends StatefulWidget {
