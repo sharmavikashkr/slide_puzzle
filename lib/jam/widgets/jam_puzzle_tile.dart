@@ -11,6 +11,7 @@ import 'package:jam_slide_puzzle/layout/layout.dart';
 import 'package:jam_slide_puzzle/models/models.dart';
 import 'package:jam_slide_puzzle/puzzle/puzzle.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:spring/spring.dart';
 
 abstract class _TileSize {
   static double small = 75;
@@ -84,8 +85,7 @@ class _JamPuzzleTileState extends State<JamPuzzleTile> {
     );
   }
 
-  @override
-  Widget build(BuildContext context) {
+  Widget __tile() {
     final size = widget.state.puzzle.getDimension();
     final theme = context.select((JamThemeBloc bloc) => bloc.state.theme);
     final status = context.select((JamPuzzleBloc bloc) => bloc.state.status);
@@ -94,7 +94,6 @@ class _JamPuzzleTileState extends State<JamPuzzleTile> {
     final movementDuration = status == JamPuzzleStatus.loading
         ? const Duration(milliseconds: 800)
         : const Duration(milliseconds: 370);
-
     return AudioControlListener(
       audioPlayer: _audioPlayer,
       child: AnimatedAlign(
@@ -178,5 +177,29 @@ class _JamPuzzleTileState extends State<JamPuzzleTile> {
         ),
       ),
     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final status = context.select((JamPuzzleBloc bloc) => bloc.state.status);
+    final notStarted = status == JamPuzzleStatus.notStarted;
+
+    return notStarted
+        ? Spring.slide(
+            slideType: [
+              SlideType.slide_in_left,
+              SlideType.slide_in_top,
+              SlideType.slide_in_bottom,
+              SlideType.slide_in_bottom
+            ][Random().nextInt(4)],
+            animDuration: const Duration(seconds: 3),
+            curve: Curves.easeOutCirc,
+            child: Spring.rotate(
+              animDuration: const Duration(seconds: 3),
+              curve: Curves.easeOutCirc,
+              child: __tile(),
+            ),
+          )
+        : __tile();
   }
 }

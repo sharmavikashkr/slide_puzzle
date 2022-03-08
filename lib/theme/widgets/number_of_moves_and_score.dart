@@ -47,10 +47,6 @@ class NumberOfMovesAndScore extends StatelessWidget {
             ? MainAxisAlignment.start
             : MainAxisAlignment.center;
 
-        final bodyTextStyle = currentSize == ResponsiveLayoutSize.small
-            ? PuzzleTextStyle.bodySmall
-            : PuzzleTextStyle.body;
-
         return Semantics(
           label: l10n.puzzleNumberOfMovesAndScoreText(
             numberOfMoves.toString(),
